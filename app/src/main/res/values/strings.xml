@@ -15,8 +15,9 @@
     <string name="jh_msg_change_pwd_success">密码修改成功</string>
     <string name="jh_msg_dialog_title">温馨提示</string>
     <string name="jh_msg_three_login">第三方登录</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+
+    <string name="main_navigation_energy_analysis">能耗分析</string>
+    <string name="main_navigation_realtime_data">实时数据</string>
+    <string name="main_navigation_cloud_service">云服务</string>
+    <string name="main_navigation_base_msg">基础信息</string>
 </resources>
