@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">LongDian</string>
+
+    <string name="jh_progress_dialog">加载中 &#8230;</string>
+    <!-- Strings related to login -->
+    <string name="jh_hint_input_phone">请输入手机号</string>
+    <string name="jh_hint_input_verify_code">请输入验证码</string>
+    <string name="jh_hint_input_pwd">请输入密码</string>
+    <string name="jh_hint_confirm_pwd">请确认密码</string>
+    <string name="jh_btn_get_verify_code">获取验证码</string>
+    <string name="jh_btn_close">返回游戏</string>
+    <string name="jh_btn_register">一键注册</string>
+    <string name="jh_btn_forget_pwd">忘记密码</string>
+    <string name="jh_btn_submit">确定</string>
+    <string name="jh_msg_change_pwd_success">密码修改成功</string>
+    <string name="jh_msg_dialog_title">温馨提示</string>
+    <string name="jh_msg_three_login">第三方登录</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+</resources>
