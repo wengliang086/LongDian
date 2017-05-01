@@ -20,4 +20,7 @@
     <string name="main_navigation_realtime_data">实时数据</string>
     <string name="main_navigation_cloud_service">云服务</string>
     <string name="main_navigation_base_msg">基础信息</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
