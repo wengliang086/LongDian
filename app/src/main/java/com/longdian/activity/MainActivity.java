@@ -14,7 +14,6 @@ import com.longdian.fragment.BaseMsgFragment;
 import com.longdian.fragment.CloudServiceFragment;
 import com.longdian.fragment.EnergyAnalysisFragment;
 import com.longdian.fragment.RealtimeDataFragment;
-import com.longdian.fragment.dummy.DummyContent;
 import com.longdian.util.ToastUtils;
 
 public class MainActivity extends AppCompatActivity implements EnergyAnalysisFragment.OnListFragmentInteractionListener {
@@ -65,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements EnergyAnalysisFra
     }
 
     @Override
-    public void onListFragmentInteraction(DummyContent.DummyItem item) {
-        ToastUtils.showToast(this, item.content);
+    public void onListFragmentInteraction(String string) {
+        ToastUtils.showToast(this, string);
     }
 }

@@ -8,37 +8,32 @@ import android.widget.TextView;
 
 import com.longdian.R;
 import com.longdian.fragment.EnergyAnalysisFragment.OnListFragmentInteractionListener;
-import com.longdian.fragment.dummy.DummyContent.DummyItem;
 
+import java.util.Arrays;
 import java.util.List;
 
-/**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
- * specified {@link OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
- */
 public class EnergyAnalysisRecyclerViewAdapter extends RecyclerView.Adapter<EnergyAnalysisRecyclerViewAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private final List<String> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public EnergyAnalysisRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+    public EnergyAnalysisRecyclerViewAdapter(List<String> items, OnListFragmentInteractionListener listener) {
+        if (items == null) {
+            items = Arrays.asList("实时对比", "每日能耗", "室外温度", "热源参数", "经济指标", "供热预测", "超标记录", "实时对比", "每日能耗", "室外温度", "热源参数", "经济指标", "供热预测", "超标记录");
+        }
         mValues = items;
         mListener = listener;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_energyanalysis, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_energyanalysis, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        holder.mIdView.setText(mValues.get(position));
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,7 +41,7 @@ public class EnergyAnalysisRecyclerViewAdapter extends RecyclerView.Adapter<Ener
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
+                    mListener.onListFragmentInteraction(holder.mIdView.getText().toString());
                 }
             }
         });
@@ -58,21 +53,13 @@ public class EnergyAnalysisRecyclerViewAdapter extends RecyclerView.Adapter<Ener
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public final View mView;
         public final TextView mIdView;
-        public final TextView mContentView;
-        public DummyItem mItem;
+        View mView;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
             mIdView = (TextView) view.findViewById(R.id.id);
-            mContentView = (TextView) view.findViewById(R.id.content);
-        }
-
-        @Override
-        public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
         }
     }
 }

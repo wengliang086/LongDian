@@ -12,8 +12,6 @@ import android.view.ViewGroup;
 
 import com.longdian.R;
 import com.longdian.adapter.EnergyAnalysisRecyclerViewAdapter;
-import com.longdian.fragment.dummy.DummyContent;
-import com.longdian.fragment.dummy.DummyContent.DummyItem;
 
 /**
  * A fragment representing a list of Items.
@@ -67,7 +65,7 @@ public class EnergyAnalysisFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new EnergyAnalysisRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            recyclerView.setAdapter(new EnergyAnalysisRecyclerViewAdapter(null, mListener));
         }
         return view;
     }
@@ -100,6 +98,6 @@ public class EnergyAnalysisFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(String string);
     }
 }
