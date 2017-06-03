@@ -1,5 +1,6 @@
 package com.longdian.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -66,5 +67,6 @@ public class MainActivity extends AppCompatActivity implements EnergyAnalysisFra
     @Override
     public void onListFragmentInteraction(String string) {
         ToastUtils.showToast(this, string);
+        startActivity(new Intent(this, PieChartActivity.class));
     }
 }
