@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+<!--
 
     <item
         android:id="@+id/id_energy_analysis"
@@ -19,5 +20,6 @@
         android:id="@+id/id_base_msg"
         android:icon="@drawable/ic_notifications_black_24dp"
         android:title="@string/main_navigation_base_msg" />
+-->
 
 </menu>

@@ -19,7 +19,7 @@ public class EnergyAnalysisRecyclerViewAdapter extends RecyclerView.Adapter<Ener
 
     public EnergyAnalysisRecyclerViewAdapter(List<String> items, OnListFragmentInteractionListener listener) {
         if (items == null) {
-            items = Arrays.asList("实时对比", "每日能耗", "室外温度", "热源参数", "经济指标", "供热预测", "超标记录", "实时对比", "每日能耗", "室外温度", "热源参数", "经济指标", "供热预测", "超标记录");
+            items = Arrays.asList("信息总览", "实时数据", "历史数据", "日报表", "月报表", "年报表");
         }
         mValues = items;
         mListener = listener;

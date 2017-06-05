@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,12 +11,58 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/navigation"
+    <RadioGroup
+        android:id="@+id/id_main_rg"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="?android:attr/windowBackground"
-        app:menu="@menu/navigation" />
+        android:layout_height="65dp"
+        android:background="#FCFDFE"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="3dp">
+
+        <RadioButton
+            android:id="@+id/id_energy_analysis"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/selector_main_button_find"
+            android:gravity="center_horizontal"
+            android:text="@string/main_navigation_energy_analysis"
+            android:textColor="#ccc" />
+
+        <RadioButton
+            android:id="@+id/id_realtime_data"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/selector_main_button_subscribe"
+            android:gravity="center_horizontal"
+            android:text="@string/main_navigation_realtime_data"
+            android:textColor="#ccc" />
+
+        <RadioButton
+            android:id="@+id/id_cloud_service"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/selector_main_button_download"
+            android:gravity="center_horizontal"
+            android:text="@string/main_navigation_cloud_service"
+            android:textColor="#ccc" />
+
+        <RadioButton
+            android:id="@+id/id_base_msg"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/selector_main_button_mine"
+            android:gravity="center_horizontal"
+            android:text="@string/main_navigation_base_msg"
+            android:textColor="#ccc" />
+    </RadioGroup>
 
 </LinearLayout>
