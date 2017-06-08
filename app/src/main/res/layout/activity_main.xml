@@ -14,11 +14,10 @@
     <RadioGroup
         android:id="@+id/id_main_rg"
         android:layout_width="match_parent"
-        android:layout_height="65dp"
+        android:layout_height="55dp"
         android:background="#FCFDFE"
         android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingTop="3dp">
+        android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/id_energy_analysis"
@@ -27,7 +26,8 @@
             android:layout_weight="1"
             android:button="@null"
             android:drawableTop="@drawable/selector_main_button_find"
-            android:gravity="center_horizontal"
+            android:gravity="center"
+            android:paddingTop="6dp"
             android:text="@string/main_navigation_energy_analysis"
             android:textColor="#ccc" />
 
@@ -38,7 +38,8 @@
             android:layout_weight="1"
             android:button="@null"
             android:drawableTop="@drawable/selector_main_button_subscribe"
-            android:gravity="center_horizontal"
+            android:gravity="center"
+            android:paddingTop="6dp"
             android:text="@string/main_navigation_realtime_data"
             android:textColor="#ccc" />
 
@@ -49,7 +50,8 @@
             android:layout_weight="1"
             android:button="@null"
             android:drawableTop="@drawable/selector_main_button_download"
-            android:gravity="center_horizontal"
+            android:gravity="center"
+            android:paddingTop="6dp"
             android:text="@string/main_navigation_cloud_service"
             android:textColor="#ccc" />
 
@@ -60,7 +62,8 @@
             android:layout_weight="1"
             android:button="@null"
             android:drawableTop="@drawable/selector_main_button_mine"
-            android:gravity="center_horizontal"
+            android:gravity="center"
+            android:paddingTop="6dp"
             android:text="@string/main_navigation_base_msg"
             android:textColor="#ccc" />
     </RadioGroup>

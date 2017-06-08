@@ -16,18 +16,20 @@ public class EnergyAnalysisRecyclerViewAdapter extends RecyclerView.Adapter<Ener
 
     private final List<String> mValues;
     private final OnListFragmentInteractionListener mListener;
+    private int mColumnCount = 1;
 
-    public EnergyAnalysisRecyclerViewAdapter(List<String> items, OnListFragmentInteractionListener listener) {
+    public EnergyAnalysisRecyclerViewAdapter(List<String> items, OnListFragmentInteractionListener listener, int mColumnCount) {
         if (items == null) {
             items = Arrays.asList("信息总览", "实时数据", "历史数据", "日报表", "月报表", "年报表");
         }
         mValues = items;
         mListener = listener;
+        this.mColumnCount = mColumnCount;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_energyanalysis, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(mColumnCount > 1 ? R.layout.fragment_energyanalysis2 : R.layout.fragment_energyanalysis, parent, false);
         return new ViewHolder(view);
     }
 
