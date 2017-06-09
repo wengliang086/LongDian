@@ -12,12 +12,12 @@ import android.widget.RadioGroup;
 
 import com.longdian.R;
 import com.longdian.fragment.BaseMsgFragment;
-import com.longdian.fragment.CloudServiceFragment;
-import com.longdian.fragment.EnergyAnalysisFragment;
-import com.longdian.fragment.RealtimeDataFragment;
+import com.longdian.fragment.WeatherFragment;
+import com.longdian.fragment.RunningStateFragment;
+import com.longdian.fragment.DataAnalysisFragment;
 import com.longdian.util.ToastUtils;
 
-public class MainActivity extends TopBarBaseActivity implements RadioGroup.OnCheckedChangeListener, EnergyAnalysisFragment.OnListFragmentInteractionListener {
+public class MainActivity extends TopBarBaseActivity implements RadioGroup.OnCheckedChangeListener, RunningStateFragment.OnListFragmentInteractionListener {
 
     private FragmentManager fragmentManager;
 
@@ -36,9 +36,9 @@ public class MainActivity extends TopBarBaseActivity implements RadioGroup.OnChe
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.id_main_rg);
         radioGroup.setOnCheckedChangeListener(this);
 
-        setRadioButtonTopDrawableSize(R.id.id_energy_analysis, R.drawable.selector_main_button_find);
-        setRadioButtonTopDrawableSize(R.id.id_realtime_data, R.drawable.selector_main_button_subscribe);
-        setRadioButtonTopDrawableSize(R.id.id_cloud_service, R.drawable.selector_main_button_download);
+        setRadioButtonTopDrawableSize(R.id.id_running_state, R.drawable.selector_main_button_find);
+        setRadioButtonTopDrawableSize(R.id.id_data_analysis, R.drawable.selector_main_button_subscribe);
+        setRadioButtonTopDrawableSize(R.id.id_weather, R.drawable.selector_main_button_download);
         setRadioButtonTopDrawableSize(R.id.id_base_msg, R.drawable.selector_main_button_mine);
 
         ((RadioButton) radioGroup.getChildAt(0)).setChecked(true);
@@ -73,28 +73,28 @@ public class MainActivity extends TopBarBaseActivity implements RadioGroup.OnChe
     @Override
     public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
         switch (checkedId) {
-            case R.id.id_energy_analysis:
-                setTitle(getString(R.string.main_navigation_energy_analysis));
+            case R.id.id_running_state:
+                setTitle(getString(R.string.main_navigation_running_state));
                 setTopRightButton("buttion", R.drawable.ic_mine_white_24dp, new OnClickListener() {
                     @Override
                     public void onClick() {
-                        replaceFragment(EnergyAnalysisFragment.newInstance(isGrid ? 1 : 3));
+                        replaceFragment(RunningStateFragment.newInstance(isGrid ? 1 : 3));
                         updateMenuItemIcon(isGrid ? R.drawable.ic_mine_white_24dp : R.drawable.ic_return_white_24dp);
                         isGrid = !isGrid;
                     }
                 });
                 updateMenuItemIcon(isGrid ? R.drawable.ic_mine_white_24dp : R.drawable.ic_return_white_24dp);
-                replaceFragment(EnergyAnalysisFragment.newInstance(1));
+                replaceFragment(RunningStateFragment.newInstance(1));
                 break;
-            case R.id.id_realtime_data:
-                setTitle(getString(R.string.main_navigation_realtime_data));
+            case R.id.id_data_analysis:
+                setTitle(getString(R.string.main_navigation_data_analysis));
                 hideRight();
-                replaceFragment(new RealtimeDataFragment());
+                replaceFragment(new DataAnalysisFragment());
                 break;
-            case R.id.id_cloud_service:
-                setTitle(getString(R.string.main_navigation_cloud_service));
+            case R.id.id_weather:
+                setTitle(getString(R.string.main_navigation_weather));
                 hideRight();
-                replaceFragment(new CloudServiceFragment());
+                replaceFragment(new WeatherFragment());
                 break;
             case R.id.id_base_msg:
                 setTitle(getString(R.string.main_navigation_base_msg));

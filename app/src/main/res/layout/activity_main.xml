@@ -20,7 +20,7 @@
         android:orientation="horizontal">
 
         <RadioButton
-            android:id="@+id/id_energy_analysis"
+            android:id="@+id/id_running_state"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -28,11 +28,11 @@
             android:drawableTop="@drawable/selector_main_button_find"
             android:gravity="center"
             android:paddingTop="6dp"
-            android:text="@string/main_navigation_energy_analysis"
+            android:text="@string/main_navigation_running_state"
             android:textColor="#ccc" />
 
         <RadioButton
-            android:id="@+id/id_realtime_data"
+            android:id="@+id/id_data_analysis"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -40,11 +40,11 @@
             android:drawableTop="@drawable/selector_main_button_subscribe"
             android:gravity="center"
             android:paddingTop="6dp"
-            android:text="@string/main_navigation_realtime_data"
+            android:text="@string/main_navigation_data_analysis"
             android:textColor="#ccc" />
 
         <RadioButton
-            android:id="@+id/id_cloud_service"
+            android:id="@+id/id_weather"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -52,7 +52,7 @@
             android:drawableTop="@drawable/selector_main_button_download"
             android:gravity="center"
             android:paddingTop="6dp"
-            android:text="@string/main_navigation_cloud_service"
+            android:text="@string/main_navigation_weather"
             android:textColor="#ccc" />
 
         <RadioButton

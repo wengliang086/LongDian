@@ -16,9 +16,9 @@
     <string name="jh_msg_dialog_title">温馨提示</string>
     <string name="jh_msg_three_login">第三方登录</string>
 
-    <string name="main_navigation_energy_analysis">运行工况</string>
-    <string name="main_navigation_realtime_data">数据分析</string>
-    <string name="main_navigation_cloud_service">天气预报</string>
+    <string name="main_navigation_running_state">运行工况</string>
+    <string name="main_navigation_data_analysis">数据分析</string>
+    <string name="main_navigation_weather">天气预报</string>
     <string name="main_navigation_base_msg">基础信息</string>
 
     <!-- TODO: Remove or change this placeholder text -->

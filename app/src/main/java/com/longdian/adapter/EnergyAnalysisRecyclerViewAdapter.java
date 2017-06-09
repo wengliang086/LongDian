@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.longdian.R;
-import com.longdian.fragment.EnergyAnalysisFragment.OnListFragmentInteractionListener;
+import com.longdian.fragment.RunningStateFragment.OnListFragmentInteractionListener;
 
 import java.util.Arrays;
 import java.util.List;

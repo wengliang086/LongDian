@@ -13,17 +13,17 @@ import android.view.ViewGroup;
 import com.longdian.R;
 import com.longdian.adapter.EnergyAnalysisRecyclerViewAdapter;
 
-public class EnergyAnalysisFragment extends Fragment {
+public class RunningStateFragment extends Fragment {
 
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
 
-    public EnergyAnalysisFragment() {
+    public RunningStateFragment() {
     }
 
-    public static EnergyAnalysisFragment newInstance(int columnCount) {
-        EnergyAnalysisFragment fragment = new EnergyAnalysisFragment();
+    public static RunningStateFragment newInstance(int columnCount) {
+        RunningStateFragment fragment = new RunningStateFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -41,7 +41,7 @@ public class EnergyAnalysisFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_energyanalysis_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_running_state, container, false);
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();

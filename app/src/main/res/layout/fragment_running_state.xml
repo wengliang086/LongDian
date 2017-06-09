@@ -8,5 +8,5 @@
     android:layout_height="match_parent"
     android:background="@android:color/darker_gray"
     app:layoutManager="LinearLayoutManager"
-    tools:context="com.longdian.fragment.EnergyAnalysisFragment"
+    tools:context="com.longdian.fragment.RunningStateFragment"
     tools:listitem="@layout/fragment_energyanalysis" />
