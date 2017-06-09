@@ -1,4 +1,4 @@
-package com.longdian.activity;
+package com.longdian.fragment.runningstate;
 
 import android.graphics.Color;
 import android.graphics.Typeface;

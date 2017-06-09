@@ -1,6 +1,5 @@
 package com.longdian.activity;
 
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
@@ -12,12 +11,11 @@ import android.widget.RadioGroup;
 
 import com.longdian.R;
 import com.longdian.fragment.BaseMsgFragment;
-import com.longdian.fragment.WeatherFragment;
-import com.longdian.fragment.RunningStateFragment;
 import com.longdian.fragment.DataAnalysisFragment;
-import com.longdian.util.ToastUtils;
+import com.longdian.fragment.RunningStateFragment;
+import com.longdian.fragment.WeatherFragment;
 
-public class MainActivity extends TopBarBaseActivity implements RadioGroup.OnCheckedChangeListener, RunningStateFragment.OnListFragmentInteractionListener {
+public class MainActivity extends TopBarBaseActivity implements RadioGroup.OnCheckedChangeListener {
 
     private FragmentManager fragmentManager;
 
@@ -61,11 +59,6 @@ public class MainActivity extends TopBarBaseActivity implements RadioGroup.OnChe
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.content, fragment);
         transaction.commit();
-    }
-
-    public void onListFragmentInteraction(String string) {
-        ToastUtils.showToast(this, string);
-        startActivity(new Intent(this, PieChartActivity.class));
     }
 
     private boolean isGrid = false;// 界面切换标志

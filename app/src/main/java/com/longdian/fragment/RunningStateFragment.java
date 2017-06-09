@@ -17,10 +17,6 @@ public class RunningStateFragment extends Fragment {
 
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 1;
-    private OnListFragmentInteractionListener mListener;
-
-    public RunningStateFragment() {
-    }
 
     public static RunningStateFragment newInstance(int columnCount) {
         RunningStateFragment fragment = new RunningStateFragment();
@@ -51,28 +47,9 @@ public class RunningStateFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new EnergyAnalysisRecyclerViewAdapter(null, mListener, mColumnCount));
+            recyclerView.setAdapter(new EnergyAnalysisRecyclerViewAdapter(getActivity(), mColumnCount));
         }
         return view;
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnListFragmentInteractionListener) {
-            mListener = (OnListFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString() + " must implement OnListFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    public interface OnListFragmentInteractionListener {
-        void onListFragmentInteraction(String string);
-    }
 }
