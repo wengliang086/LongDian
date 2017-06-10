@@ -6,6 +6,7 @@ import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -14,6 +15,7 @@ import com.longdian.fragment.BaseMsgFragment;
 import com.longdian.fragment.DataAnalysisFragment;
 import com.longdian.fragment.RunningStateFragment;
 import com.longdian.fragment.WeatherFragment;
+import com.longdian.util.ToastUtils;
 
 public class MainActivity extends TopBarBaseActivity implements RadioGroup.OnCheckedChangeListener {
 
@@ -95,5 +97,22 @@ public class MainActivity extends TopBarBaseActivity implements RadioGroup.OnChe
                 replaceFragment(new BaseMsgFragment());
                 break;
         }
+    }
+
+    private long mExitTime = 0;
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+            if ((System.currentTimeMillis() - mExitTime) > 2000) {
+                ToastUtils.showToast(this, "再按一次退出");
+                mExitTime = System.currentTimeMillis();
+            } else {
+                finish();
+                System.exit(0);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
