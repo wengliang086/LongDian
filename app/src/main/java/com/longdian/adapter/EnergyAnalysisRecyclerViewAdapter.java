@@ -10,7 +10,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.longdian.R;
+import com.longdian.activity.ContentActivity;
 import com.longdian.fragment.runningstate.PieChartActivity;
+import com.longdian.fragment.runningstate.TableFragment;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,11 +21,11 @@ public class EnergyAnalysisRecyclerViewAdapter extends RecyclerView.Adapter<Ener
 
     private List<Entity> mValues = Arrays.asList(
             new Entity("信息总览", PieChartActivity.class),
-            new Entity("实时数据", PieChartActivity.class),
-            new Entity("历史数据", PieChartActivity.class),
-            new Entity("日报表", PieChartActivity.class),
-            new Entity("月报表", PieChartActivity.class),
-            new Entity("年报表", PieChartActivity.class)
+            new Entity("实时数据", TableFragment.class),
+            new Entity("历史数据", TableFragment.class),
+            new Entity("日报表", TableFragment.class),
+            new Entity("月报表", TableFragment.class),
+            new Entity("年报表", TableFragment.class)
     );
     private int mColumnCount = 1;
     private Context context;
@@ -40,14 +42,18 @@ public class EnergyAnalysisRecyclerViewAdapter extends RecyclerView.Adapter<Ener
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         final Entity e = mValues.get(position);
         holder.mIdView.setText(e.title);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, e.clazz));
+                if (position == 0) {
+                    context.startActivity(new Intent(context, e.clazz));
+                } else {
+                    ContentActivity.start((Activity) context, e.clazz);
+                }
             }
         });
     }

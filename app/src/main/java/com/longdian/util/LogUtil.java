@@ -11,6 +11,16 @@ public class LogUtil {
         Log.d(TAG, msg);
     }
 
+    /**
+     * 为了方便之后动态日志level，所以增加此方法
+     *
+     * @param msg
+     */
+    public static void print(String msg) {
+        msg += " [ThreadName=" + Thread.currentThread().getName() + "]";
+        Log.d(TAG, msg);
+    }
+
 /*    public static void i(String msg) {
         Log.i(TAG, msg);
     }

@@ -12,6 +12,8 @@ import com.longdian.fragment.base.BaseMsgAboutSystemFragment;
 import com.longdian.fragment.base.BaseMsgPrivateMsgFragment;
 import com.longdian.fragment.base.BaseMsgQrCodeFragment;
 import com.longdian.fragment.base.BaseMsgUpdatePasswordFragment;
+import com.longdian.fragment.base.TableStationFragment;
+import com.longdian.fragment.runningstate.TableFragment;
 
 public class BaseMsgFragment extends Fragment implements View.OnClickListener {
 
@@ -37,7 +39,8 @@ public class BaseMsgFragment extends Fragment implements View.OnClickListener {
                 ContentActivity.start(getActivity(), BaseMsgUpdatePasswordFragment.class);
                 break;
             case R.id.id_qr_code:
-                ContentActivity.start(getActivity(), BaseMsgQrCodeFragment.class);
+//                ContentActivity.start(getActivity(), BaseMsgQrCodeFragment.class);
+                ContentActivity.start(getActivity(), TableStationFragment.class);
                 break;
             case R.id.id_about_system:
                 ContentActivity.start(getActivity(), BaseMsgAboutSystemFragment.class);
