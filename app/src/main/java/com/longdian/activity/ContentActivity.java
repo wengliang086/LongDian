@@ -6,29 +6,47 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 
 import com.longdian.R;
 import com.longdian.util.LogUtil;
 
-public class ContentActivity extends AppCompatActivity {
+public class ContentActivity extends TopBarBaseActivity {
 
     public static final String FragmentClassName = "FragmentClassName";
+    public static final String Title = "title";
     private FragmentManager fragmentManager;
 
     public static void start(Activity activity, Class clazz) {
+        start(activity, clazz, null);
+    }
+
+    public static void start(Activity activity, Class clazz, String title) {
         Intent intent = new Intent(activity, ContentActivity.class);
         intent.putExtra(FragmentClassName, clazz);
+        intent.putExtra(Title, title);
         activity.startActivity(intent);
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_content);
+    protected int getContentView() {
+        return R.layout.activity_content;
+    }
 
+    @Override
+    protected void init(Bundle savedInstanceState) {
         fragmentManager = getSupportFragmentManager();
         Class clazz = (Class) getIntent().getSerializableExtra(FragmentClassName);
+        String title = getIntent().getStringExtra(Title);
+        if (!TextUtils.isEmpty(title)) {
+            setTitle(title);
+            setTopLeftButton(R.drawable.ic_return_white_24dp, new OnClickListener() {
+                @Override
+                public void onClick() {
+                    finish();
+                }
+            });
+        }
         try {
             replaceFragment((Fragment) clazz.newInstance());
         } catch (Exception e) {

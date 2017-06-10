@@ -1,6 +1,9 @@
 package com.longdian.service;
 
 import com.longdian.fragment.base.model.StationList;
+import com.longdian.fragment.weather.model.WeatherData;
+
+import java.util.List;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -20,8 +23,8 @@ public interface HoolaiService {
     @POST("user/stationList")
     Observable<HoolaiResponse<StationList>> stationList();
 
-    @POST("public/user/{channel}/{channelId}/login/{loginType}")
-    Observable<HoolaiResponse<String>> login(@Path("channel") String channel, @Path("channelId") int channelId, @Path("loginType") int loginType, @Query("type") int type, @Query("passport") String account, @Query("password") String password);
+    @POST("user/weatherList")
+    Observable<HoolaiResponse<List<WeatherData>>> weatherList();
 
     @POST("public/user/email/findpwdcode")
     Observable<HoolaiResponse<String>> getFindPwdVerifyCode(@Query("email") String email);

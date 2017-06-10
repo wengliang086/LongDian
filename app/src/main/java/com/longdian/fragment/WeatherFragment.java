@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.longdian.R;
 import com.longdian.activity.ContentActivity;
 import com.longdian.fragment.runningstate.TableFragment;
+import com.longdian.fragment.weather.TableWeatherFragment;
 
 public class WeatherFragment extends Fragment implements View.OnClickListener {
 
@@ -29,7 +30,7 @@ public class WeatherFragment extends Fragment implements View.OnClickListener {
                 ContentActivity.start(getActivity(), TableFragment.class);
                 break;
             case R.id.id_weather_table:
-                ContentActivity.start(getActivity(), TableFragment.class);
+                ContentActivity.start(getActivity(), TableWeatherFragment.class, "天气情况查询");
                 break;
         }
     }

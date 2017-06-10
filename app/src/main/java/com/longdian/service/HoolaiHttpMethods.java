@@ -3,12 +3,14 @@ package com.longdian.service;
 import android.content.Context;
 
 import com.longdian.fragment.base.model.StationList;
+import com.longdian.fragment.weather.model.WeatherData;
 import com.longdian.service.base.ObserverOnNextAndErrorListener;
 import com.longdian.service.base.ObserverOnNextListener;
 import com.longdian.service.base.ProgressObserver;
 import com.longdian.service.interceptor.HeaderInterceptor;
 import com.longdian.service.interceptor.LoggingInterceptor;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
@@ -66,9 +68,9 @@ public class HoolaiHttpMethods {
         toObserverHoolai(context, service.stationList(), observerOnNextAndErrorListener);
     }
 
-//    public void bindPhone(Context context, String phone, String code, String pwd, ObserverOnNextAndErrorListener<User> observerOnNextAndErrorListener) {
-//        toObserverHoolai(context, service.bindPhoneWithPassword(user.getUid(), phone, user.getUid(), phone), observerOnNextAndErrorListener);
-//    }
+    public void weatherList(Context context, ObserverOnNextAndErrorListener<List<WeatherData>> observerOnNextAndErrorListener) {
+        toObserverHoolai(context, service.weatherList(), observerOnNextAndErrorListener);
+    }
 
     /**
      * 下面两个是封装方法

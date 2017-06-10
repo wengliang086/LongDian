@@ -40,7 +40,7 @@ public class BaseMsgFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.id_qr_code:
 //                ContentActivity.start(getActivity(), BaseMsgQrCodeFragment.class);
-                ContentActivity.start(getActivity(), TableStationFragment.class);
+                ContentActivity.start(getActivity(), TableStationFragment.class, "换热站信息");
                 break;
             case R.id.id_about_system:
                 ContentActivity.start(getActivity(), BaseMsgAboutSystemFragment.class);
