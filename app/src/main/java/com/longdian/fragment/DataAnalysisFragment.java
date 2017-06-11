@@ -28,16 +28,16 @@ public class DataAnalysisFragment extends Fragment implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.id_water_consum:
-                ContentActivity.start(getActivity(), TableFragment.class);
+                ContentActivity.start(getActivity(), TableFragment.class, "水耗分析");
                 break;
             case R.id.id_heat_consum:
-                ContentActivity.start(getActivity(), TableFragment.class);
+                ContentActivity.start(getActivity(), TableFragment.class, "热耗分析");
                 break;
             case R.id.id_electric_consum:
-                ContentActivity.start(getActivity(), TableFragment.class);
+                ContentActivity.start(getActivity(), TableFragment.class, "电耗分析");
                 break;
             case R.id.id_economics_analysis:
-                ContentActivity.start(getActivity(), TableFragment.class);
+                ContentActivity.start(getActivity(), TableFragment.class, "经济分析报表");
                 break;
         }
     }

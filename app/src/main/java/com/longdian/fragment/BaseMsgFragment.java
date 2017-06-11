@@ -10,10 +10,8 @@ import com.longdian.R;
 import com.longdian.activity.ContentActivity;
 import com.longdian.fragment.base.BaseMsgAboutSystemFragment;
 import com.longdian.fragment.base.BaseMsgPrivateMsgFragment;
-import com.longdian.fragment.base.BaseMsgQrCodeFragment;
 import com.longdian.fragment.base.BaseMsgUpdatePasswordFragment;
 import com.longdian.fragment.base.TableStationFragment;
-import com.longdian.fragment.runningstate.TableFragment;
 
 public class BaseMsgFragment extends Fragment implements View.OnClickListener {
 
@@ -33,17 +31,17 @@ public class BaseMsgFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.id_private_msg:
-                ContentActivity.start(getActivity(), BaseMsgPrivateMsgFragment.class);
+                ContentActivity.start(getActivity(), BaseMsgPrivateMsgFragment.class, "个人信息");
                 break;
             case R.id.id_update_pwd:
-                ContentActivity.start(getActivity(), BaseMsgUpdatePasswordFragment.class);
+                ContentActivity.start(getActivity(), BaseMsgUpdatePasswordFragment.class, "修改密码");
                 break;
             case R.id.id_qr_code:
 //                ContentActivity.start(getActivity(), BaseMsgQrCodeFragment.class);
                 ContentActivity.start(getActivity(), TableStationFragment.class, "换热站信息");
                 break;
             case R.id.id_about_system:
-                ContentActivity.start(getActivity(), BaseMsgAboutSystemFragment.class);
+                ContentActivity.start(getActivity(), BaseMsgAboutSystemFragment.class, "关于系统");
                 break;
         }
     }

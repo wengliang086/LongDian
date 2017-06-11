@@ -6,7 +6,7 @@
     android:name="com.longdian.fragment.EnergyAnalysisFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/darker_gray"
+    android:background="@color/gray_divider_line"
     app:layoutManager="LinearLayoutManager"
     tools:context="com.longdian.fragment.RunningStateFragment"
     tools:listitem="@layout/fragment_energyanalysis" />
