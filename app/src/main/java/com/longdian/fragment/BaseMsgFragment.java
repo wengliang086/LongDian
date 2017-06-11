@@ -12,6 +12,7 @@ import com.longdian.fragment.base.BaseMsgAboutSystemFragment;
 import com.longdian.fragment.base.BaseMsgPrivateMsgFragment;
 import com.longdian.fragment.base.BaseMsgUpdatePasswordFragment;
 import com.longdian.fragment.base.TableStationFragment;
+import com.longdian.view.ExitDialog;
 
 public class BaseMsgFragment extends Fragment implements View.OnClickListener {
 
@@ -24,6 +25,7 @@ public class BaseMsgFragment extends Fragment implements View.OnClickListener {
         view.findViewById(R.id.id_update_pwd).setOnClickListener(this);
         view.findViewById(R.id.id_qr_code).setOnClickListener(this);
         view.findViewById(R.id.id_about_system).setOnClickListener(this);
+        view.findViewById(R.id.id_exit).setOnClickListener(this);
         return view;
     }
 
@@ -42,6 +44,9 @@ public class BaseMsgFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.id_about_system:
                 ContentActivity.start(getActivity(), BaseMsgAboutSystemFragment.class, "关于系统");
+                break;
+            case R.id.id_exit:
+                new ExitDialog().show(getActivity().getFragmentManager(), ExitDialog.class.getName());
                 break;
         }
     }
