@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.longdian.fragment.base.model.StationList;
 import com.longdian.fragment.weather.model.WeatherData;
+import com.longdian.fragment.weather.model.WeatherDataAll;
 import com.longdian.service.base.ObserverOnNextAndErrorListener;
 import com.longdian.service.base.ObserverOnNextListener;
 import com.longdian.service.base.ProgressObserver;
@@ -70,6 +71,10 @@ public class HoolaiHttpMethods {
 
     public void weatherList(Context context, ObserverOnNextAndErrorListener<List<WeatherData>> observerOnNextAndErrorListener) {
         toObserverHoolai(context, service.weatherList(), observerOnNextAndErrorListener);
+    }
+
+    public void weatherIndex(Context context, ObserverOnNextAndErrorListener<WeatherDataAll> observerOnNextAndErrorListener) {
+        toObserverHoolai(context, service.weatherIndex(), observerOnNextAndErrorListener);
     }
 
     /**
