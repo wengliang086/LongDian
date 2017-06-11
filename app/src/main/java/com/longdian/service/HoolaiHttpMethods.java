@@ -74,7 +74,8 @@ public class HoolaiHttpMethods {
     }
 
     public void weatherIndex(Context context, ObserverOnNextAndErrorListener<WeatherDataAll> observerOnNextAndErrorListener) {
-        toObserverHoolai(context, service.weatherIndex(), observerOnNextAndErrorListener);
+        Observer<WeatherDataAll> observer = new ProgressObserver<>(context, observerOnNextAndErrorListener, false);
+        toObserverHoolai(service.weatherIndex(), observer);
     }
 
     /**

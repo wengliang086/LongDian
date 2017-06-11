@@ -1,7 +1,5 @@
 package com.longdian.fragment.weather;
 
-import android.app.Activity;
-import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -22,8 +20,8 @@ import android.widget.TextView;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
-import com.handmark.pulltorefresh.library.ScrollViewListener;
 import com.longdian.R;
+import com.longdian.fragment.weather.model.WeatherData;
 import com.longdian.fragment.weather.model.WeatherDataAll;
 import com.longdian.fragment.weather.model.WeatherDaysForecast;
 import com.longdian.fragment.weather.model.WeatherInfo;
@@ -34,11 +32,11 @@ import com.longdian.service.base.ObserverOnNextAndErrorListener;
 import com.longdian.util.LogUtil;
 import com.longdian.util.MyUtil;
 import com.longdian.util.ToastUtils;
-import com.longdian.util.WeacConstants;
 import com.longdian.view.LineChartViewDouble;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -484,21 +482,6 @@ public class WeatherOverviewFragment extends Fragment implements View.OnClickLis
     private LinearLayout mBackGround;
 
     /**
-     * 模糊处理过的Drawable
-     */
-    private Drawable mBlurDrawable;
-
-    /**
-     * 屏幕密度
-     */
-    private float mDensity;
-
-    /**
-     * 透明
-     */
-    private int mAlpha = 0;
-
-    /**
      * 天气界面布局
      */
     private ViewGroup mWeatherGroup;
@@ -602,14 +585,14 @@ public class WeatherOverviewFragment extends Fragment implements View.OnClickLis
 
             }
         } else {
-            if (weatherDaysForecasts.size() >= 6) {
+            if (weatherDaysForecasts.size() >= 7) {
                 weather = weatherDaysForecasts.get(0);
-                weather1 = weatherDaysForecasts.get(0);
-                weather2 = weatherDaysForecasts.get(1);
-                weather3 = weatherDaysForecasts.get(2);
-                weather4 = weatherDaysForecasts.get(3);
-                weather5 = weatherDaysForecasts.get(4);
-                weather6 = weatherDaysForecasts.get(5);
+                weather1 = weatherDaysForecasts.get(1);
+                weather2 = weatherDaysForecasts.get(2);
+                weather3 = weatherDaysForecasts.get(3);
+                weather4 = weatherDaysForecasts.get(4);
+                weather5 = weatherDaysForecasts.get(5);
+                weather6 = weatherDaysForecasts.get(6);
             } else {
                 weather = null;
                 weather1 = null;
@@ -642,12 +625,9 @@ public class WeatherOverviewFragment extends Fragment implements View.OnClickLis
         // 设置风向、风力
         setWind(weatherInfo);
         // 设置今天，明天，后天大概天气
-        setThreeDaysWeather(weather2, weather3, weather4, hour);
-
+        setThreeDaysWeather(weather3, weather4, weather5, hour);
         // 设置多天天气预报
-        setDaysForecast(weather, weather1, weather2, weather3, weather4, weather5, weather6,
-                hour1, minute1, calendar);
-
+        setDaysForecast(weather, weather1, weather2, weather3, weather4, weather5, weather6, hour1, minute1, calendar);
         // 生活指数信息
         setLifeIndex(weatherInfo);
     }
@@ -789,31 +769,11 @@ public class WeatherOverviewFragment extends Fragment implements View.OnClickLis
         lifeIndexCarWashRlyt.setOnClickListener(this);
         lifeIndexAirCureRlyt.setOnClickListener(this);
 
-        mDensity = getResources().getDisplayMetrics().density;
-        mBlurDrawable = MyUtil.getWallPaperBlurDrawable(getActivity());
         mBackGround = (LinearLayout) view.findViewById(R.id.wea_background);
 
         mPullRefreshScrollView = (PullToRefreshScrollView) view.findViewById(R.id.pull_refresh_scrollview);
         // 设置下拉刷新
         setPullToRefresh();
-        mPullRefreshScrollView.setScrollViewListener(new ScrollViewListener() {
-            @Override
-            public void onScrollChanged(ScrollView scrollView, int x, int y, int oldx, int oldy) {
-//                LogUtil.i(LOG_TAG, "x: " + x + "y: " + y + "oldx: " + oldx + "oldy: " + oldy);
-                // scroll最大滚动距离（xxxh：2320）/密度（xxxh：3）/1.5  =  515
-                mAlpha = Math.round(Math.round(y / mDensity / 1.5));
-                if (mAlpha > 255) {
-                    mAlpha = 255;
-                } else if (mAlpha < 0) {
-                    mAlpha = 0;
-                }
-                // 设置模糊处理后drawable的透明度
-                mBlurDrawable.setAlpha(mAlpha);
-                // 设置背景
-                //noinspection deprecation
-                mBackGround.setBackgroundDrawable(mBlurDrawable);
-            }
-        });
     }
 
     private void showWeatherLayout() {
@@ -873,8 +833,29 @@ public class WeatherOverviewFragment extends Fragment implements View.OnClickLis
             @Override
             public void onNext(WeatherDataAll weatherDataAll) {
                 WeatherInfo weatherInfo = new WeatherInfo();
+                weatherInfo.setCity("齐齐哈尔");
+                weatherInfo.setUpdateTime(weatherDataAll.getShikuang());
+                weatherInfo.setWindPower(weatherDataAll.getWinName());
+                weatherInfo.setWindDirection(weatherDataAll.getWeatherData().getTeWd1());
+                weatherInfo.setTemperature(weatherDataAll.getWendu());
+                weatherInfo.setHumidity(weatherDataAll.getWeatherDataStal().getRhu() + "");
 
+                List<WeatherDaysForecast> mWeatherDaysForecast = new ArrayList<>();
+                for (WeatherData o : weatherDataAll.getData7()) {
+                    WeatherDaysForecast day = new WeatherDaysForecast();
+                    day.setDate(o.getDay());
+                    day.setHigh("000" + o.getTeH());
+                    day.setLow("000" + o.getTeL());
+                    day.setTypeDay(o.getTeC1());
+                    day.setTypeNight(o.getTeC2());
+                    day.setWindDirectionDay(o.getTeWd1());
+                    day.setWindDirectionNight(o.getTeWd2());
+                    day.setWindPowerDay(o.getTeWe1());
+                    day.setWindPowerNight(o.getTeWe2());
 
+                    mWeatherDaysForecast.add(day);
+                }
+                weatherInfo.setWeatherDaysForecast(mWeatherDaysForecast);
                 try {
                     stopRefresh();
                     initWeather(weatherInfo);
@@ -910,32 +891,21 @@ public class WeatherOverviewFragment extends Fragment implements View.OnClickLis
                                  WeatherDaysForecast weather6, int hour1, int minute1,
                                  Calendar calendar) {
         // 日期和星期标题 【索引0：日期;索引1：星期】
-        String[] day1;
-        String[] day2;
-        String[] day3;
-        String[] day4;
-        String[] day5;
-        String[] day6;
+        int[] day1;
+        int[] day2;
+        int[] day3;
+        int[] day4;
+        int[] day5;
+        int[] day6;
         if ((hour1 == 23 && minute1 >= 45) || (hour1 < 5) || ((hour1 == 5) && (minute1 < 20))) {
-            if (weather != null) {
-                day1 = getDay(weather.getDate());
-            } else {
-                day1 = null;
-            }
-
-            assert weather1 != null;
+            day1 = getDay(weather.getDate());
             day2 = getDay(weather1.getDate());
             day3 = getDay(weather2.getDate());
             day4 = getDay(weather3.getDate());
             day5 = getDay(weather4.getDate());
             day6 = getDay(weather5.getDate());
         } else {
-            if (weather1 != null) {
-                day1 = getDay(weather1.getDate());
-            } else {
-                day1 = null;
-            }
-
+            day1 = getDay(weather1.getDate());
             day2 = getDay(weather2.getDate());
             day3 = getDay(weather3.getDate());
             day4 = getDay(weather4.getDate());
@@ -944,15 +914,15 @@ public class WeatherOverviewFragment extends Fragment implements View.OnClickLis
         }
 
         // 设置标题星期
-        mDaysForecastTvWeek1.setText(getString(R.string.yesterday));
-        mDaysForecastTvWeek2.setText(getString(R.string.today));
-        mDaysForecastTvWeek3.setText(getWeek(day3[1]));
+        mDaysForecastTvWeek1.setText("前天");
+        mDaysForecastTvWeek2.setText(getString(R.string.yesterday));
+        mDaysForecastTvWeek3.setText(getString(R.string.today));
         mDaysForecastTvWeek4.setText(getWeek(day4[1]));
         mDaysForecastTvWeek5.setText(getWeek(day5[1]));
         mDaysForecastTvWeek6.setText(getWeek(day6[1]));
 
         // 月份
-        calendar.add(Calendar.DATE, -1);
+        calendar.add(Calendar.DATE, -2);
         String month1 = String.valueOf(calendar.get(Calendar.MONTH) + 1);
         calendar.add(Calendar.DATE, 1);
         String month2 = String.valueOf(calendar.get(Calendar.MONTH) + 1);
@@ -965,34 +935,14 @@ public class WeatherOverviewFragment extends Fragment implements View.OnClickLis
         calendar.add(Calendar.DATE, 1);
         String month6 = String.valueOf(calendar.get(Calendar.MONTH) + 1);
 
-        // 日
-        String day01;
-        if (day1 != null) {
-            day01 = day1[0].split("日")[0];
-        } else {
-            day01 = null;
-        }
-
-        String day02 = day2[0].split("日")[0];
-        String day03 = day3[0].split("日")[0];
-        String day04 = day4[0].split("日")[0];
-        String day05 = day5[0].split("日")[0];
-        String day06 = day6[0].split("日")[0];
-
         // 斜杠
         String date = getString(R.string.date);
-        // 设置日期
-        if (day01 != null) {
-            mDaysForecastTvDay1.setText(String.format(date, month1, day01));
-        } else {
-            mDaysForecastTvDay1.setText(R.string.dash);
-        }
-
-        mDaysForecastTvDay2.setText(String.format(date, month2, day02));
-        mDaysForecastTvDay3.setText(String.format(date, month3, day03));
-        mDaysForecastTvDay4.setText(String.format(date, month4, day04));
-        mDaysForecastTvDay5.setText(String.format(date, month5, day05));
-        mDaysForecastTvDay6.setText(String.format(date, month6, day06));
+        mDaysForecastTvDay1.setText(String.format(date, month1, day1[0]));
+        mDaysForecastTvDay2.setText(String.format(date, month2, day2[0]));
+        mDaysForecastTvDay3.setText(String.format(date, month3, day3[0]));
+        mDaysForecastTvDay4.setText(String.format(date, month4, day4[0]));
+        mDaysForecastTvDay5.setText(String.format(date, month5, day5[0]));
+        mDaysForecastTvDay6.setText(String.format(date, month6, day6[0]));
 
         // 取得白天天气类型图片id
         int weatherDayId1;
@@ -1291,45 +1241,8 @@ public class WeatherOverviewFragment extends Fragment implements View.OnClickLis
      */
     @SuppressWarnings("deprecation")
     private void setUpdateTime(WeatherInfo weatherInfo) {
-        if (weatherInfo.getUpdateTime() != null) {
-            long now = System.currentTimeMillis();
-            SharedPreferences share = getActivity().getSharedPreferences(
-                    WeacConstants.BASE64, Activity.MODE_PRIVATE);
-            // 最近一次天气更新时间
-            long lastTime = share.getLong(getString(R.string.city_weather_update_time,
-                    weatherInfo.getCity()), 0);
-            // 更新间隔时间（小时）
-            long minuteD = (now - lastTime) / 1000 / 60 / 60;
-            // 更新时间
-            String updateTime;
-            if (minuteD < 24) {
-                updateTime = String.format(getString(R.string.update_time), weatherInfo.getUpdateTime());
-            } else if (minuteD >= 24 && minuteD < 48) {
-                updateTime = String.format(getString(R.string.update_time2), weatherInfo.getUpdateTime());
-            } else if (minuteD >= 48 && minuteD < 72) {
-                updateTime = String.format(getString(R.string.update_time3), weatherInfo.getUpdateTime());
-            } else if (minuteD >= 72 && minuteD < 96) {
-                updateTime = String.format(getString(R.string.update_time4), 3);
-            } else if (minuteD >= 96 && minuteD < 120) {
-                updateTime = String.format(getString(R.string.update_time4), 4);
-            } else if (minuteD >= 120 && minuteD < 144) {
-                updateTime = String.format(getString(R.string.update_time4), 5);
-            } else if (minuteD >= 144 && minuteD < 168) {
-                updateTime = String.format(getString(R.string.update_time4), 6);
-            } else {
-                updateTime = getString(R.string.data_void);
-            }
-            mUpdateTimeTv.setText(updateTime);
-            // 当不是数据过期
-            if (!updateTime.equals(getString(R.string.data_void))) {
-                mUpdateTimeTv.setTextColor(getResources().getColor(R.color.white_trans60));
-            } else {
-                mUpdateTimeTv.setTextColor(getResources().getColor(R.color.red));
-            }
-        } else {
-            mUpdateTimeTv.setText(getString(R.string.dash));
-            mUpdateTimeTv.setTextColor(getResources().getColor(R.color.white_trans60));
-        }
+        mUpdateTimeTv.setText(String.format(getString(R.string.update_time4), weatherInfo.getUpdateTime()));
+        mUpdateTimeTv.setTextColor(getResources().getColor(R.color.white_trans60));
     }
 
     /**
@@ -1378,7 +1291,7 @@ public class WeatherOverviewFragment extends Fragment implements View.OnClickLis
      * @param weatherInfo weatherInfo
      */
     private void setCityName(WeatherInfo weatherInfo) {
-        mCityNameTv.setText(getString(R.string.dash));
+        mCityNameTv.setText(weatherInfo.getCity());
         mCityNameTv.setCompoundDrawables(null, null, null, null);
     }
 
@@ -1522,21 +1435,7 @@ public class WeatherOverviewFragment extends Fragment implements View.OnClickLis
      * @return 温度
      */
     private int getTemp(String temp) {
-        String temperature;
-        if (!temp.contains("-")) {
-            if (temp.length() == 6) {
-                temperature = temp.substring(3, 5);
-            } else {
-                temperature = temp.substring(3, 4);
-            }
-        } else {
-            if (temp.length() == 7) {
-                temperature = temp.substring(3, 6);
-            } else {
-                temperature = temp.substring(3, 5);
-            }
-        }
-        return Integer.parseInt(temperature);
+        return (int) Double.parseDouble(temp);
     }
 
     /**
@@ -1545,16 +1444,19 @@ public class WeatherOverviewFragment extends Fragment implements View.OnClickLis
      * @param date 日期信息
      * @return 包含日期和星期的数组
      */
-    private String[] getDay(String date) {
-        String[] date1 = new String[2];
-        if (date.length() == 5) {
-            date1[0] = date.substring(0, 2);
-            date1[1] = date.substring(2);
-        } else {
-            date1[0] = date.substring(0, 3);
-            date1[1] = date.substring(3);
+    private int[] getDay(String date) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+        try {
+            Date dd = sdf.parse(date);
+            Calendar c = Calendar.getInstance();
+            c.setTime(dd);
+            int d = c.get(Calendar.DAY_OF_WEEK);
+            int d1 = c.get(Calendar.DAY_OF_MONTH);
+            return new int[]{d1, d};
+        } catch (ParseException e) {
+            LogUtil.e(e);
         }
-        return date1;
+        return new int[]{-1, -1};
     }
 
     /**
@@ -1563,33 +1465,32 @@ public class WeatherOverviewFragment extends Fragment implements View.OnClickLis
      * @param week 需要转换的周标题
      * @return 周的标题
      */
-    private String getWeek(String week) {
+    private String getWeek(int week) {
         String week1;
         switch (week) {
-            case "星期一":
+            case 2:
                 week1 = getString(R.string.monday);
                 break;
-            case "星期二":
+            case 3:
                 week1 = getString(R.string.tuesday);
                 break;
-            case "星期三":
+            case 4:
                 week1 = getString(R.string.wednesday);
                 break;
-            case "星期四":
+            case 5:
                 week1 = getString(R.string.thursday);
                 break;
-            case "星期五":
+            case 6:
                 week1 = getString(R.string.friday);
                 break;
-            case "星期六":
+            case 7:
                 week1 = getString(R.string.saturday);
                 break;
-            case "星期天":
-            case "星期日":
+            case 1:
                 week1 = getString(R.string.sunday);
                 break;
             default:
-                week1 = week;
+                week1 = getString(R.string.sunday);
                 break;
         }
         return week1;
@@ -1642,7 +1543,6 @@ public class WeatherOverviewFragment extends Fragment implements View.OnClickLis
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mAlpha = 0;
         if (mHandler != null) {
             mHandler.removeCallbacks(mRun);
         }

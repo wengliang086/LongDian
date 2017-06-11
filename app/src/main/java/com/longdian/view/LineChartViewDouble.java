@@ -315,7 +315,7 @@ public class LineChartViewDouble extends View {
             // 画线
             if (i < LENGTH - 1) {
                 // 昨天
-                if (i == 0) {
+                if (i == 0 || i == 1) {
                     mLinePaint.setAlpha(alpha1);
                     // 设置虚线效果
                     mLinePaint.setPathEffect(new DashPathEffect(new float[]{2 * mDensity, 2 * mDensity}, 0));
@@ -334,9 +334,9 @@ public class LineChartViewDouble extends View {
             }
 
             // 画点
-            if (i != 1) {
-                // 昨天
-                if (i == 0) {
+            if (i != 2) {
+                // 前天、昨天
+                if (i == 0 || i == 1) {
                     mPointPaint.setAlpha(alpha1);
                     canvas.drawCircle(mXAxis[i], yAxis[i], mRadius, mPointPaint);
                 } else {
@@ -351,7 +351,7 @@ public class LineChartViewDouble extends View {
 
             // 画字
             // 昨天
-            if (i == 0) {
+            if (i == 0 || i == 1) {
                 mTextPaint.setAlpha(alpha1);
                 drawText(canvas, mTextPaint, i, temp, yAxis, type);
             } else {

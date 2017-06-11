@@ -3,7 +3,6 @@ package com.longdian.service.base;
 import android.content.Context;
 import android.widget.Toast;
 
-
 import com.longdian.service.HoolaiException;
 
 import io.reactivex.Observer;
@@ -22,15 +21,31 @@ public class ProgressObserver<T> implements Observer<T>, ProgressCancelListener 
     private Disposable disposable;
 
     public ProgressObserver(Context context, ObserverOnNextListener<T> observableOnNextListener) {
+        this(context, observableOnNextListener, true);
+    }
+
+    public ProgressObserver(Context context, ObserverOnNextListener<T> observableOnNextListener, boolean showProgressDialog) {
         this.mContext = context;
         this.mObservableOnNextListener = observableOnNextListener;
-        mProgressDialogHandler = new ProgressDialogHandler(context, this, true);
+        if (showProgressDialog) {
+            mProgressDialogHandler = new ProgressDialogHandler(context, this, true);
+        } else {
+            mProgressDialogHandler = null;
+        }
     }
 
     public ProgressObserver(Context context, ObserverOnNextAndErrorListener<T> observerOnNextAndErrorListener) {
+        this(context, observerOnNextAndErrorListener, true);
+    }
+
+    public ProgressObserver(Context context, ObserverOnNextAndErrorListener<T> observerOnNextAndErrorListener, boolean showProgressDialog) {
         this.mContext = context;
         this.mObserverOnNextAndErrorListener = observerOnNextAndErrorListener;
-        mProgressDialogHandler = new ProgressDialogHandler(context, this, true);
+        if (showProgressDialog) {
+            mProgressDialogHandler = new ProgressDialogHandler(context, this, true);
+        } else {
+            mProgressDialogHandler = null;
+        }
     }
 
     @Override

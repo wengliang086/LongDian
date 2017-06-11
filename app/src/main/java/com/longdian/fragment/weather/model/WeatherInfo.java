@@ -16,14 +16,12 @@
  */
 package com.longdian.fragment.weather.model;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
  * 天气信息
  */
-public class WeatherInfo implements Serializable {
-    private static final long serialVersionUID = 479963920700063837L;
+public class WeatherInfo {
     /**
      * 城市
      */

@@ -54,7 +54,7 @@
     <string name="data_void">数据过期</string>
     <string name="aqi">%1$s %2$s</string>
     <string name="humidity">湿度 %1$s</string>
-    <string name="date">%1$s/%2$s</string>
+    <string name="date">%1$s/%2$d</string>
     <string name="pull_to_refresh">下拉更新</string>
     <string name="refreshing">正在更新…</string>
     <string name="leave_to_refresh">松手可更新</string>
