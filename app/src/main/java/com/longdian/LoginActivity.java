@@ -30,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     @OnClick(R.id.id_submit)
     public void Login() {
         startActivity(new Intent(this, MainActivity.class));
+        finish();
     }
 
     @OnClick(R.id.id_test)

@@ -59,6 +59,7 @@ public class ExitDialog extends DialogFragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.id_exit:
                 ToastUtils.showToast(getActivity(), "exit");
+                getActivity().finish();
                 getDialog().cancel();
                 break;
             case R.id.id_cancel:

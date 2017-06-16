@@ -10,6 +10,7 @@ import android.view.KeyEvent;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.longdian.LoginActivity;
 import com.longdian.R;
 import com.longdian.fragment.BaseMsgFragment;
 import com.longdian.fragment.DataAnalysisFragment;
@@ -28,6 +29,7 @@ public class MainActivity extends TopBarBaseActivity implements RadioGroup.OnChe
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        LoginActivity.setStatusBarTranslucent(this);
         initView();
     }
 
