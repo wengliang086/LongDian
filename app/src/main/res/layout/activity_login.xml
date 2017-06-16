@@ -29,7 +29,7 @@
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/ic_lifeindex_sport" />
+                android:src="@drawable/hl_sdk_phone" />
 
             <AutoCompleteTextView
                 android:id="@+id/id_phone"
@@ -49,7 +49,7 @@
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/ic_lifeindex_umbrella" />
+                android:src="@drawable/hl_sdk_lock" />
 
             <EditText
                 android:id="@+id/id_pwd"
