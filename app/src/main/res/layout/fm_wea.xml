@@ -6,7 +6,9 @@
     android:background="@drawable/wallpaper_4"
     android:orientation="vertical">
 
-    <RelativeLayout style="@style/action_llyt">
+    <RelativeLayout
+        style="@style/action_llyt"
+        android:layout_marginTop="25dp">
 
         <ImageView
             android:id="@+id/action_home"
