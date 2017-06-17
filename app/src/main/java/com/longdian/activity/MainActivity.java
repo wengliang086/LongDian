@@ -16,6 +16,7 @@ import com.longdian.fragment.BaseMsgFragment;
 import com.longdian.fragment.DataAnalysisFragment;
 import com.longdian.fragment.RunningStateFragment;
 import com.longdian.fragment.WeatherFragment;
+import com.longdian.util.DensityUtil;
 import com.longdian.util.ToastUtils;
 
 public class MainActivity extends TopBarBaseActivity implements RadioGroup.OnCheckedChangeListener {
@@ -29,7 +30,7 @@ public class MainActivity extends TopBarBaseActivity implements RadioGroup.OnChe
 
     @Override
     protected void init(Bundle savedInstanceState) {
-        LoginActivity.setStatusBarTranslucent(this);
+        LoginActivity.setStatusBarTranslucent(this, R.color.colorPrimary);
         initView();
     }
 
@@ -53,9 +54,10 @@ public class MainActivity extends TopBarBaseActivity implements RadioGroup.OnChe
      * @param drawableId
      */
     private void setRadioButtonTopDrawableSize(int id, int drawableId) {
+        int size = DensityUtil.dp2px(this, 25);
         RadioButton radioButton = (RadioButton) findViewById(id);
         Drawable drawable = getResources().getDrawable(drawableId);
-        drawable.setBounds(0, 0, 60, 60);
+        drawable.setBounds(0, 0, size, size);
         radioButton.setCompoundDrawables(null, drawable, null, null);
     }
 
@@ -69,6 +71,7 @@ public class MainActivity extends TopBarBaseActivity implements RadioGroup.OnChe
 
     @Override
     public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+        updateTextColor(checkedId);
         switch (checkedId) {
             case R.id.id_running_state:
                 setTitle(getString(R.string.main_navigation_running_state));
@@ -99,6 +102,18 @@ public class MainActivity extends TopBarBaseActivity implements RadioGroup.OnChe
                 replaceFragment(new BaseMsgFragment());
                 break;
         }
+    }
+
+    private void updateTextColor(int resId) {
+        RadioButton radioButton = (RadioButton) findViewById(R.id.id_running_state);
+        RadioButton radioButton1 = (RadioButton) findViewById(R.id.id_data_analysis);
+        RadioButton radioButton2 = (RadioButton) findViewById(R.id.id_weather);
+        RadioButton radioButton3 = (RadioButton) findViewById(R.id.id_base_msg);
+        radioButton.setTextColor(getResources().getColor(R.color.gray_seekbar));
+        radioButton1.setTextColor(getResources().getColor(R.color.gray_seekbar));
+        radioButton2.setTextColor(getResources().getColor(R.color.gray_seekbar));
+        radioButton3.setTextColor(getResources().getColor(R.color.gray_seekbar));
+        ((RadioButton) findViewById(resId)).setTextColor(getResources().getColor(R.color.memory));
     }
 
     private long mExitTime = 0;

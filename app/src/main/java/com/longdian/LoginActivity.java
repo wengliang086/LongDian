@@ -11,6 +11,7 @@ import com.longdian.activity.MainActivity;
 import com.longdian.service.HoolaiException;
 import com.longdian.service.HoolaiHttpMethods;
 import com.longdian.service.base.ObserverOnNextAndErrorListener;
+import com.longdian.util.SystemBarTintManager;
 import com.longdian.util.ToastUtils;
 
 import butterknife.ButterKnife;
@@ -24,7 +25,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 //        getSupportActionBar().hide();
         ButterKnife.bind(this);
-        setStatusBarTranslucent(this);
+        setStatusBarTranslucent(this, -1);
     }
 
     @OnClick(R.id.id_submit)
@@ -48,11 +49,16 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public static void setStatusBarTranslucent(Activity activity) {
+    public static void setStatusBarTranslucent(Activity activity, int colorRes) {
         // 如果版本在4.4以上
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             // 状态栏透明
             activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            if (colorRes > 0) {
+                SystemBarTintManager tintManager = new SystemBarTintManager(activity);
+                tintManager.setStatusBarTintEnabled(true);
+                tintManager.setStatusBarTintResource(colorRes);
+            }
         }
     }
 }
