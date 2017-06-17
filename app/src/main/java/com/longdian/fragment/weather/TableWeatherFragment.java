@@ -1,17 +1,14 @@
 package com.longdian.fragment.weather;
 
-import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.DatePicker;
-import android.widget.TextView;
 
 import com.kelin.scrollablepanel.library.ScrollablePanel;
 import com.longdian.R;
+import com.longdian.fragment.BaseDatePickerFragment;
 import com.longdian.fragment.runningstate.TestPanelAdapter;
 import com.longdian.fragment.weather.model.WeatherData;
 import com.longdian.service.HoolaiException;
@@ -23,11 +20,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class TableWeatherFragment extends Fragment implements View.OnClickListener {
+public class TableWeatherFragment extends BaseDatePickerFragment {
 
     private ScrollablePanel scrollablePanel;
-    private TextView textViewStart;
-    private TextView textViewEnd;
 
     @Nullable
     @Override
@@ -56,38 +51,12 @@ public class TableWeatherFragment extends Fragment implements View.OnClickListen
 
     private void init(View view) {
         scrollablePanel = (ScrollablePanel) view.findViewById(R.id.id_scrollable_panel);
-        textViewStart = (TextView) view.findViewById(R.id.id_date_start);
-        textViewStart.setOnClickListener(this);
-        textViewEnd = (TextView) view.findViewById(R.id.id_date_end);
-        textViewEnd.setOnClickListener(this);
-        view.findViewById(R.id.id_search).setOnClickListener(this);
+        initDatePicker(view);
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.id_date_start:
-                DatePickerDialog dialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        textViewStart.setText(year + "-" + month + "-" + dayOfMonth);
-                    }
-                }, 2017, 6, 10);
-                dialog.show();
-                break;
-            case R.id.id_date_end:
-                DatePickerDialog dialog1 = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        textViewEnd.setText(year + "-" + month + "-" + dayOfMonth);
-                    }
-                }, 2017, 6, 10);
-                dialog1.show();
-                break;
-            case R.id.id_search:
-                getData();
-                break;
-        }
+    protected void doSearch() {
+        getData();
     }
 
     private List<List<String>> createData(List<WeatherData> list) {

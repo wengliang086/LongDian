@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.kelin.scrollablepanel.library.ScrollablePanel;
 import com.longdian.R;
+import com.longdian.fragment.BaseDatePickerFragment;
 import com.longdian.fragment.base.model.StationData;
 import com.longdian.fragment.base.model.StationList;
 import com.longdian.fragment.runningstate.TestPanelAdapter;
@@ -21,12 +22,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class TableStationFragment extends Fragment {
+public class TableStationFragment extends BaseDatePickerFragment {
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View baseView = inflater.inflate(R.layout.activity_scrollable_panel_test, container, false);
+
+        initDatePicker(baseView);
 
         HoolaiHttpMethods.getInstance().stationList(getActivity(), new ObserverOnNextAndErrorListener<StationList>() {
             @Override
@@ -55,5 +58,10 @@ public class TableStationFragment extends Fragment {
             datas.add(row);
         }
         return datas;
+    }
+
+    @Override
+    protected void doSearch() {
+
     }
 }
