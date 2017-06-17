@@ -84,6 +84,10 @@ public class TestPanelAdapter extends PanelAdapter {
         changeWidth(holder.itemView.getContext(), lp, column);
         holder.itemView.setLayoutParams(lp);
 
+        if (row % 2 == 0) {
+            holder.itemView.setBackgroundResource(R.drawable.bg_item2);
+        }
+
         String title = data.get(row).get(column);
         TitleViewHolder titleViewHolder = (TitleViewHolder) holder;
         titleViewHolder.titleTextView.setText(title);

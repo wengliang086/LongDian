@@ -11,6 +11,7 @@ import com.longdian.activity.ContentActivity;
 import com.longdian.fragment.base.BaseMsgAboutSystemFragment;
 import com.longdian.fragment.base.BaseMsgPrivateMsgFragment;
 import com.longdian.fragment.base.BaseMsgUpdatePasswordFragment;
+import com.longdian.fragment.base.ListStationFragment;
 import com.longdian.fragment.base.TableStationFragment;
 import com.longdian.view.ExitDialog;
 
@@ -40,7 +41,8 @@ public class BaseMsgFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.id_qr_code:
 //                ContentActivity.start(getActivity(), BaseMsgQrCodeFragment.class);
-                ContentActivity.start(getActivity(), TableStationFragment.class, "换热站信息");
+//                ContentActivity.start(getActivity(), TableStationFragment.class, "换热站信息");
+                ContentActivity.start(getActivity(), ListStationFragment.class, "换热站信息");
                 break;
             case R.id.id_about_system:
                 ContentActivity.start(getActivity(), BaseMsgAboutSystemFragment.class, "关于系统");
