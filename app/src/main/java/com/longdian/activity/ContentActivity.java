@@ -7,7 +7,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
+import android.view.View;
 
+import com.longdian.LoginActivity;
 import com.longdian.R;
 import com.longdian.util.LogUtil;
 
@@ -46,6 +48,9 @@ public class ContentActivity extends TopBarBaseActivity {
                     finish();
                 }
             });
+        } else {
+            toolbar.setVisibility(View.GONE);
+            LoginActivity.setStatusBarTranslucent(this, -1);
         }
         try {
             replaceFragment((Fragment) clazz.newInstance());
