@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.longdian.R;
 import com.longdian.activity.ContentActivity;
+import com.longdian.fragment.dataanalysis.EconomicsAnalysisFragment;
 import com.longdian.fragment.runningstate.TableFragment;
 
 public class DataAnalysisFragment extends Fragment implements View.OnClickListener {
@@ -37,7 +38,7 @@ public class DataAnalysisFragment extends Fragment implements View.OnClickListen
                 ContentActivity.start(getActivity(), TableFragment.class, "电耗分析");
                 break;
             case R.id.id_economics_analysis:
-                ContentActivity.start(getActivity(), TableFragment.class, "经济分析报表");
+                ContentActivity.start(getActivity(), EconomicsAnalysisFragment.class, "经济分析报表");
                 break;
         }
     }

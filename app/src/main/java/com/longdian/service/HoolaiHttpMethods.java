@@ -70,6 +70,22 @@ public class HoolaiHttpMethods {
         toObserverHoolai(context, service.pieChart(), observerOnNextAndErrorListener);
     }
 
+    public void reportDay(Context context, String date, ObserverOnNextAndErrorListener<List<Map<String, String>>> observerOnNextAndErrorListener) {
+        toObserverHoolai(context, service.reportDay(date), observerOnNextAndErrorListener);
+    }
+
+    public void reportMonth(Context context, String date, String name, ObserverOnNextAndErrorListener<List<Map<String, String>>> observerOnNextAndErrorListener) {
+        toObserverHoolai(context, service.reportMonth(date, name), observerOnNextAndErrorListener);
+    }
+
+    public void reportYear(Context context, String year, String name, ObserverOnNextAndErrorListener<List<Map<String, String>>> observerOnNextAndErrorListener) {
+        toObserverHoolai(context, service.reportYear(year, name), observerOnNextAndErrorListener);
+    }
+
+    public void reportEconomics(Context context, String start, String end, String name, ObserverOnNextAndErrorListener<List<Map<String, String>>> observerOnNextAndErrorListener) {
+        toObserverHoolai(context, service.reportEconomics(start, end, name), observerOnNextAndErrorListener);
+    }
+
     public void stationList(Context context, ObserverOnNextAndErrorListener<StationList> observerOnNextAndErrorListener) {
         toObserverHoolai(context, service.stationList(), observerOnNextAndErrorListener);
     }

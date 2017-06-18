@@ -21,6 +21,18 @@ public interface HoolaiService {
     @GET("user/test1")
     Observable<HoolaiResponse<Map<String, Long>>> pieChart();
 
+    @GET("user/day/list")
+    Observable<HoolaiResponse<List<Map<String, String>>>> reportDay(@Query("searchDateTime") String searchDateTime);
+
+    @GET("user/month/list")
+    Observable<HoolaiResponse<List<Map<String, String>>>> reportMonth(@Query("searchDateTime") String searchDateTime, @Query("stationName") String stationName);
+
+    @GET("user/year/list")
+    Observable<HoolaiResponse<List<Map<String, String>>>> reportYear(@Query("year") String year, @Query("stationName") String stationName);
+
+    @GET("user/econ/list")
+    Observable<HoolaiResponse<List<Map<String, String>>>> reportEconomics(@Query("beginTime") String beginTime, @Query("endTime") String endTime, @Query("stationName") String stationName);
+
     @POST("user/stationList")
     Observable<HoolaiResponse<StationList>> stationList();
 
