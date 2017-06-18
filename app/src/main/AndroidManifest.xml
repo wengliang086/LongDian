@@ -22,7 +22,6 @@
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.ContentActivity" />
         <activity android:name=".activity.ContentActivityNoToolbar" />
-        <activity android:name=".fragment.runningstate.PieChartActivity" />
     </application>
 
 </manifest>

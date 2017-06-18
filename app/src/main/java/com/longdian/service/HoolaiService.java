@@ -5,6 +5,7 @@ import com.longdian.fragment.weather.model.WeatherData;
 import com.longdian.fragment.weather.model.WeatherDataAll;
 
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -16,6 +17,9 @@ public interface HoolaiService {
 
     @GET("user/login")
     Observable<HoolaiResponse<String>> login(@Query("account") String account, @Query("pwd") String pwd);
+
+    @GET("user/test1")
+    Observable<HoolaiResponse<Map<String, Long>>> pieChart();
 
     @POST("user/stationList")
     Observable<HoolaiResponse<StationList>> stationList();

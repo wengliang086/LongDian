@@ -4,11 +4,14 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
@@ -19,23 +22,49 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.longdian.R;
+import com.longdian.service.HoolaiException;
+import com.longdian.service.HoolaiHttpMethods;
+import com.longdian.service.base.ObserverOnNextAndErrorListener;
+import com.longdian.util.ToastUtils;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * Created by phoenix on 2017/6/3.
  */
 
-public class PieChartActivity extends AppCompatActivity {
+public class PieChartFragment extends Fragment {
 
     private PieChart mChart;
+    private long jqi;// 电
+    private long qqi;// 热
+    private long ft3q;// 水
 
+    @Nullable
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pie_chart);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        final View baseView = inflater.inflate(R.layout.activity_pie_chart, container, false);
 
-        mChart = (PieChart) findViewById(R.id.id_pie_chart);
+        HoolaiHttpMethods.getInstance().pieChart(getActivity(), new ObserverOnNextAndErrorListener<Map<String, Long>>() {
+            @Override
+            public void onNext(Map<String, Long> stringObjectMap) {
+                jqi = (long) stringObjectMap.get("jqi");
+                qqi = (long) stringObjectMap.get("qqi");
+                ft3q = (long) stringObjectMap.get("ft3q");
+                init(baseView);
+            }
+
+            @Override
+            public void onError(HoolaiException e) {
+                ToastUtils.showToast(getContext(), e.getMessage());
+            }
+        });
+        return baseView;
+    }
+
+    private void init(View baseView) {
+        mChart = (PieChart) baseView.findViewById(R.id.id_pie_chart);
         mChart.setUsePercentValues(true);
         mChart.getDescription().setEnabled(false);
         mChart.setExtraOffsets(5, 10, 5, 5);
@@ -78,53 +107,33 @@ public class PieChartActivity extends AppCompatActivity {
 
         Legend l = mChart.getLegend();
         l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
-        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
-        l.setOrientation(Legend.LegendOrientation.VERTICAL);
+        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
+        l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
         l.setDrawInside(false);
-        l.setEnabled(false);
+        l.setEnabled(true);
     }
 
     private void setData(int count, float range) {
-
-        float mult = range;
-
         ArrayList<PieEntry> entries = new ArrayList<PieEntry>();
 
-        String[] lables = new String[] {"水", "电", "热"};
+        String[] lables = new String[]{"水 " + ft3q, "电" + jqi, "热" + qqi};
         // NOTE: The order of the entries when being added to the entries array determines their position around the center of
         // the chart.
-        for (int i = 0; i < lables.length; i++) {
-            entries.add(new PieEntry((float) (Math.random() * mult) + mult / 5, /*mParties[i % mParties.length]*/lables[i]));
-        }
+        entries.add(new PieEntry(ft3q, /*mParties[i % mParties.length]*/lables[0]));
+        entries.add(new PieEntry(jqi, /*mParties[i % mParties.length]*/lables[1]));
+        entries.add(new PieEntry(qqi, /*mParties[i % mParties.length]*/lables[2]));
 
-        PieDataSet dataSet = new PieDataSet(entries, "Election Results");
+        PieDataSet dataSet = new PieDataSet(entries, "");
         dataSet.setSliceSpace(3f);
         dataSet.setSelectionShift(5f);
 
         // add a lot of colors
-
         ArrayList<Integer> colors = new ArrayList<Integer>();
-
-        for (int c : ColorTemplate.VORDIPLOM_COLORS)
-            colors.add(c);
-
-        for (int c : ColorTemplate.JOYFUL_COLORS)
-            colors.add(c);
-
-        for (int c : ColorTemplate.COLORFUL_COLORS)
-            colors.add(c);
-
-        for (int c : ColorTemplate.LIBERTY_COLORS)
-            colors.add(c);
-
-        for (int c : ColorTemplate.PASTEL_COLORS)
-            colors.add(c);
-
-        colors.add(ColorTemplate.getHoloBlue());
-
+        colors.add(getActivity().getResources().getColor(android.R.color.holo_blue_dark));
+        colors.add(getActivity().getResources().getColor(android.R.color.holo_green_light));
+        colors.add(getActivity().getResources().getColor(android.R.color.holo_red_dark));
         dataSet.setColors(colors);
         //dataSet.setSelectionShift(0f);
-
 
         dataSet.setValueLinePart1OffsetPercentage(80.f);
         dataSet.setValueLinePart1Length(0.2f);
@@ -138,7 +147,6 @@ public class PieChartActivity extends AppCompatActivity {
         data.setValueTextColor(Color.BLACK);
 //        data.setValueTypeface(tf);
         mChart.setData(data);
-
         // undo all highlights
         mChart.highlightValues(null);
 

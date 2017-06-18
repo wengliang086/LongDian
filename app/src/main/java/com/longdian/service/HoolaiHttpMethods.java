@@ -12,6 +12,7 @@ import com.longdian.service.interceptor.HeaderInterceptor;
 import com.longdian.service.interceptor.LoggingInterceptor;
 
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
@@ -63,6 +64,10 @@ public class HoolaiHttpMethods {
      */
     public void login(Context context, String account, String pwd, ObserverOnNextAndErrorListener<String> observerOnNextAndErrorListener) {
         toObserverHoolai(context, service.login(account, pwd), observerOnNextAndErrorListener);
+    }
+
+    public void pieChart(Context context, ObserverOnNextAndErrorListener<Map<String, Long>> observerOnNextAndErrorListener) {
+        toObserverHoolai(context, service.pieChart(), observerOnNextAndErrorListener);
     }
 
     public void stationList(Context context, ObserverOnNextAndErrorListener<StationList> observerOnNextAndErrorListener) {
