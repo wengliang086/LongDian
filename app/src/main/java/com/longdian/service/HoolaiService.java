@@ -1,6 +1,7 @@
 package com.longdian.service;
 
 import com.longdian.fragment.base.model.StationList;
+import com.longdian.fragment.dataanalysis.model.CollectExtendData;
 import com.longdian.fragment.weather.model.WeatherData;
 import com.longdian.fragment.weather.model.WeatherDataAll;
 
@@ -17,6 +18,9 @@ public interface HoolaiService {
 
     @GET("user/login")
     Observable<HoolaiResponse<String>> login(@Query("account") String account, @Query("pwd") String pwd);
+
+    @GET("user/actualdata")
+    Observable<HoolaiResponse<List<CollectExtendData>>> realtimeData();
 
     @GET("user/test1")
     Observable<HoolaiResponse<Map<String, Long>>> pieChart();

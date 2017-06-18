@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.longdian.R;
 import com.longdian.activity.ContentActivity;
 import com.longdian.fragment.runningstate.PieChartFragment;
+import com.longdian.fragment.runningstate.RealtimeDataFragment;
 import com.longdian.fragment.runningstate.ReportDayFragment;
 import com.longdian.fragment.runningstate.ReportMonthFragment;
 import com.longdian.fragment.runningstate.ReportYearFragment;
@@ -24,7 +25,7 @@ public class EnergyAnalysisRecyclerViewAdapter extends RecyclerView.Adapter<Ener
 
     private List<Entity> mValues = Arrays.asList(
             new Entity("信息总览", PieChartFragment.class, R.drawable.ic_more_suggestion_feedback),
-            new Entity("实时数据", TableFragment.class, R.drawable.ic_more_give_good_reputation),
+            new Entity("实时数据", RealtimeDataFragment.class, R.drawable.ic_more_give_good_reputation),
             new Entity("历史数据", TableFragment.class, R.drawable.ic_more_rewards),
             new Entity("日报表", ReportDayFragment.class, R.drawable.ic_more_software_update),
             new Entity("月报表", ReportMonthFragment.class, R.drawable.ic_more_friend_share),

@@ -3,6 +3,7 @@ package com.longdian.service;
 import android.content.Context;
 
 import com.longdian.fragment.base.model.StationList;
+import com.longdian.fragment.dataanalysis.model.CollectExtendData;
 import com.longdian.fragment.weather.model.WeatherData;
 import com.longdian.fragment.weather.model.WeatherDataAll;
 import com.longdian.service.base.ObserverOnNextAndErrorListener;
@@ -68,6 +69,10 @@ public class HoolaiHttpMethods {
 
     public void pieChart(Context context, ObserverOnNextAndErrorListener<Map<String, Long>> observerOnNextAndErrorListener) {
         toObserverHoolai(context, service.pieChart(), observerOnNextAndErrorListener);
+    }
+
+    public void realtimeData(Context context, ObserverOnNextAndErrorListener<List<CollectExtendData>> observerOnNextAndErrorListener) {
+        toObserverHoolai(context, service.realtimeData(), observerOnNextAndErrorListener);
     }
 
     public void reportDay(Context context, String date, ObserverOnNextAndErrorListener<List<Map<String, String>>> observerOnNextAndErrorListener) {
