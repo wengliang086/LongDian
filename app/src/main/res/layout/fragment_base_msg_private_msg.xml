@@ -18,11 +18,12 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/id_name"
                 android:layout_width="1dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:text="姓名：龙电测试"
+                android:text="@string/tv_name"
                 android:textColor="@android:color/black" />
 
         </LinearLayout>
@@ -102,11 +103,12 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/id_department"
                 android:layout_width="1dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:text="部门：管理员"
+                android:text="@string/tv_depName"
                 android:textColor="@android:color/black" />
 
         </LinearLayout>

@@ -17,12 +17,14 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <TextView
+            <EditText
+                android:id="@+id/id_old_pwd"
                 android:layout_width="1dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:text="旧密码"
+                android:hint="旧密码"
+                android:inputType="textPassword"
                 android:textColor="@android:color/black" />
 
         </LinearLayout>
@@ -42,12 +44,14 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <TextView
+            <EditText
+                android:id="@+id/id_new_pwd1"
                 android:layout_width="1dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:text="新密码"
+                android:hint="新密码"
+                android:inputType="textPassword"
                 android:textColor="@android:color/black" />
 
         </LinearLayout>
@@ -67,12 +71,14 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <TextView
+            <EditText
+                android:id="@+id/id_new_pwd2"
                 android:layout_width="1dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:text="确认密码"
+                android:hint="确认密码"
+                android:inputType="textPassword"
                 android:textColor="@android:color/black" />
 
         </LinearLayout>
@@ -80,6 +86,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/id_submit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"

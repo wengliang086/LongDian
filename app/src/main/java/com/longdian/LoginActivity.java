@@ -11,6 +11,8 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.longdian.activity.MainActivity;
+import com.longdian.bean.GlobalInfo;
+import com.longdian.bean.OprInfo;
 import com.longdian.service.HoolaiException;
 import com.longdian.service.HoolaiHttpMethods;
 import com.longdian.service.base.ObserverOnNextAndErrorListener;
@@ -73,9 +75,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void doLogin(final String account, final String pwd) {
-        HoolaiHttpMethods.getInstance().login(this, account, pwd, new ObserverOnNextAndErrorListener<String>() {
+        HoolaiHttpMethods.getInstance().login(this, account, pwd, new ObserverOnNextAndErrorListener<OprInfo>() {
             @Override
-            public void onNext(String s) {
+            public void onNext(OprInfo oprInfo) {
+                GlobalInfo.oprInfo = oprInfo;
+
                 PreferencesUtils.putBoolean(LoginActivity.this, SAVE_PWD, savePwd.isChecked());
                 PreferencesUtils.putBoolean(LoginActivity.this, AUTO_LOGIN, autoLogin.isChecked());
                 PreferencesUtils.putString(LoginActivity.this, SAVED_ACCOUNT, account);
@@ -107,5 +111,9 @@ public class LoginActivity extends AppCompatActivity {
 
     public static void clearAutoLogin(Activity activity) {
         PreferencesUtils.putBoolean(activity, AUTO_LOGIN, false);
+    }
+
+    public static void updatePwd(Activity activity, String pwd) {
+        PreferencesUtils.putString(activity, SAVED_PWD, pwd);
     }
 }

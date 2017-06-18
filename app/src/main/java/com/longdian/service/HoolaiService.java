@@ -1,5 +1,6 @@
 package com.longdian.service;
 
+import com.longdian.bean.OprInfo;
 import com.longdian.fragment.base.model.StationList;
 import com.longdian.fragment.dataanalysis.model.CollectExtendData;
 import com.longdian.fragment.weather.model.WeatherData;
@@ -17,7 +18,10 @@ import retrofit2.http.Query;
 public interface HoolaiService {
 
     @GET("user/login")
-    Observable<HoolaiResponse<String>> login(@Query("account") String account, @Query("pwd") String pwd);
+    Observable<HoolaiResponse<OprInfo>> login(@Query("account") String account, @Query("pwd") String pwd);
+
+    @GET("user/changePwd")
+    Observable<HoolaiResponse<String>> changePwd(@Query("account") String account, @Query("oldPwd") String oldPwd, @Query("newPwd") String newPwd);
 
     @GET("user/actualdata")
     Observable<HoolaiResponse<List<CollectExtendData>>> realtimeData();

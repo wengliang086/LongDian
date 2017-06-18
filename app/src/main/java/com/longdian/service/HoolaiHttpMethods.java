@@ -2,6 +2,7 @@ package com.longdian.service;
 
 import android.content.Context;
 
+import com.longdian.bean.OprInfo;
 import com.longdian.fragment.base.model.StationList;
 import com.longdian.fragment.dataanalysis.model.CollectExtendData;
 import com.longdian.fragment.weather.model.WeatherData;
@@ -63,8 +64,12 @@ public class HoolaiHttpMethods {
     /**
      * 业务方法
      */
-    public void login(Context context, String account, String pwd, ObserverOnNextAndErrorListener<String> observerOnNextAndErrorListener) {
+    public void login(Context context, String account, String pwd, ObserverOnNextAndErrorListener<OprInfo> observerOnNextAndErrorListener) {
         toObserverHoolai(context, service.login(account, pwd), observerOnNextAndErrorListener);
+    }
+
+    public void changePwd(Context context, String account, String oldPwd, String pwd, ObserverOnNextAndErrorListener<String> observerOnNextAndErrorListener) {
+        toObserverHoolai(context, service.changePwd(account, oldPwd, pwd), observerOnNextAndErrorListener);
     }
 
     public void pieChart(Context context, ObserverOnNextAndErrorListener<Map<String, Long>> observerOnNextAndErrorListener) {
