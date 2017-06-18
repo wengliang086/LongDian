@@ -14,8 +14,8 @@ import retrofit2.http.Query;
 
 public interface HoolaiService {
 
-    @GET("user/test")
-    Observable<HoolaiResponse<String>> test(@Query("account") String account);
+    @GET("user/login")
+    Observable<HoolaiResponse<String>> login(@Query("account") String account, @Query("pwd") String pwd);
 
     @POST("user/stationList")
     Observable<HoolaiResponse<StationList>> stationList();

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.longdian.LoginActivity;
 import com.longdian.R;
 import com.longdian.util.SystemUtils;
 import com.longdian.util.ToastUtils;
@@ -58,6 +59,7 @@ public class ExitDialog extends DialogFragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.id_exit:
+                LoginActivity.clearAutoLogin(getActivity());
                 ToastUtils.showToast(getActivity(), "exit");
                 getActivity().finish();
                 getDialog().cancel();

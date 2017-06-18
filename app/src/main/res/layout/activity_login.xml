@@ -69,6 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:background="@android:color/holo_green_dark"
             android:text="登录"
             android:textStyle="bold" />
 
@@ -80,6 +81,7 @@
             android:padding="4dp">
 
             <CheckBox
+                android:id="@+id/id_save_pwd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
@@ -91,6 +93,7 @@
                 android:layout_weight="1" />
 
             <CheckBox
+                android:id="@+id/id_auto_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="自动登录" />

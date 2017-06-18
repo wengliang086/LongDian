@@ -61,8 +61,8 @@ public class HoolaiHttpMethods {
     /**
      * 业务方法
      */
-    public void test(Context context, String account, ObserverOnNextAndErrorListener<String> observerOnNextAndErrorListener) {
-        toObserverHoolai(context, service.test(account), observerOnNextAndErrorListener);
+    public void login(Context context, String account, String pwd, ObserverOnNextAndErrorListener<String> observerOnNextAndErrorListener) {
+        toObserverHoolai(context, service.login(account, pwd), observerOnNextAndErrorListener);
     }
 
     public void stationList(Context context, ObserverOnNextAndErrorListener<StationList> observerOnNextAndErrorListener) {
