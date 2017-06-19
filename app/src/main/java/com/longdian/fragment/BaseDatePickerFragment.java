@@ -2,6 +2,7 @@ package com.longdian.fragment;
 
 import android.app.DatePickerDialog;
 import android.support.v4.app.Fragment;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TextView;
@@ -14,31 +15,22 @@ import java.util.Calendar;
  * Created by phoenix on 2017/6/17.
  */
 
-public abstract class BaseDatePickerFragment extends Fragment implements View.OnClickListener, View.OnFocusChangeListener {
+public abstract class BaseDatePickerFragment extends Fragment implements View.OnClickListener, View.OnTouchListener {
 
     protected TextView textViewStart;
     protected TextView textViewEnd;
-    private boolean firstTag = true;// 第一次不弹出
 
     protected void initDatePicker(View baseView) {
         textViewStart = (TextView) baseView.findViewById(R.id.id_date_start);
-        textViewStart.setOnClickListener(this);
-        textViewStart.setOnFocusChangeListener(this);
+        textViewStart.setOnTouchListener(this);
         textViewEnd = (TextView) baseView.findViewById(R.id.id_date_end);
-        textViewEnd.setOnClickListener(this);
-        textViewEnd.setOnFocusChangeListener(this);
+        textViewEnd.setOnTouchListener(this);
         baseView.findViewById(R.id.id_search).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.id_date_start:
-                showDatePickerDialog(textViewStart);
-                break;
-            case R.id.id_date_end:
-                showDatePickerDialog(textViewEnd);
-                break;
             case R.id.id_search:
                 doSearch();
                 break;
@@ -46,25 +38,6 @@ public abstract class BaseDatePickerFragment extends Fragment implements View.On
     }
 
     protected abstract void doSearch();
-
-    @Override
-    public void onFocusChange(View v, boolean hasFocus) {
-        if (firstTag) {
-            firstTag = false;
-            return;
-        }
-        if (!hasFocus) {
-            return;
-        }
-        switch (v.getId()) {
-            case R.id.id_date_start:
-                showDatePickerDialog(textViewStart);
-                break;
-            case R.id.id_date_end:
-                showDatePickerDialog(textViewEnd);
-                break;
-        }
-    }
 
     private void showDatePickerDialog(final TextView textView) {
         String dateStr = textView.getText().toString();
@@ -87,5 +60,20 @@ public abstract class BaseDatePickerFragment extends Fragment implements View.On
             }
         }, year, month, dayOfMonth);
         dialog.show();
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_UP) {
+            switch (v.getId()) {
+                case R.id.id_date_start:
+                    showDatePickerDialog(textViewStart);
+                    break;
+                case R.id.id_date_end:
+                    showDatePickerDialog(textViewEnd);
+                    break;
+            }
+        }
+        return false;
     }
 }
