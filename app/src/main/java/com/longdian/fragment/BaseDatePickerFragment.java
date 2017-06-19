@@ -24,7 +24,9 @@ public abstract class BaseDatePickerFragment extends Fragment implements View.On
         textViewStart = (TextView) baseView.findViewById(R.id.id_date_start);
         textViewStart.setOnTouchListener(this);
         textViewEnd = (TextView) baseView.findViewById(R.id.id_date_end);
-        textViewEnd.setOnTouchListener(this);
+        if (textViewEnd != null) {
+            textViewEnd.setOnTouchListener(this);
+        }
         baseView.findViewById(R.id.id_search).setOnClickListener(this);
     }
 

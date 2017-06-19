@@ -26,14 +26,14 @@ public class ReportDayFragment extends BaseDatePickerFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        final View baseView = inflater.inflate(R.layout.activity_scrollable_panel_test, container, false);
+        final View baseView = inflater.inflate(R.layout.fragment_report_day, container, false);
         init(baseView);
-        getData();
+        getData("2017-06-17");
         return baseView;
     }
 
-    private void getData() {
-        HoolaiHttpMethods.getInstance().reportDay(getActivity(), "2017-06-17", new ObserverOnNextAndErrorListener<List<Map<String, String>>>() {
+    private void getData(String date) {
+        HoolaiHttpMethods.getInstance().reportDay(getActivity(), date, new ObserverOnNextAndErrorListener<List<Map<String, String>>>() {
             @Override
             public void onNext(List<Map<String, String>> dataList) {
                 List<Integer> vs = Arrays.asList(80, 80, 80, 80, 80, 80, 80);
@@ -55,7 +55,7 @@ public class ReportDayFragment extends BaseDatePickerFragment {
 
     @Override
     protected void doSearch() {
-        getData();
+        getData(textViewStart.getText().toString());
     }
 
     private List<List<String>> createData(List<Map<String, String>> list) {
