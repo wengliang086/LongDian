@@ -1,14 +1,13 @@
 package com.longdian.fragment.runningstate;
 
-import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.DatePicker;
 import android.widget.TextView;
 
 import com.kelin.scrollablepanel.library.ScrollablePanel;
@@ -17,6 +16,7 @@ import com.longdian.service.HoolaiException;
 import com.longdian.service.HoolaiHttpMethods;
 import com.longdian.service.base.ObserverOnNextAndErrorListener;
 import com.longdian.util.ToastUtils;
+import com.longdian.view.mydatepicker.DatePicker;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -96,20 +96,25 @@ public class ReportMonthFragment extends Fragment implements View.OnClickListene
         Calendar c = Calendar.getInstance();
 
         int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH);
-        int dayOfMonth = c.get(Calendar.DAY_OF_MONTH);
-        if (array.length == 3) {
+        int month = c.get(Calendar.MONTH) + 1;
+        if (array.length == 2) {
             year = Integer.parseInt(array[0]);
-            month = Integer.parseInt(array[1]) - 1;
-            dayOfMonth = Integer.parseInt(array[2]);
+            month = Integer.parseInt(array[1]);
         }
-        DatePickerDialog dialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
+
+        DatePicker picker = new DatePicker(getActivity(), DatePicker.YEAR_MONTH);
+        picker.setGravity(Gravity.CENTER);
+        picker.setWidth((int) (picker.getScreenWidthPixels() * 0.6));
+        picker.setRangeStart(2016, 10, 14);
+        picker.setRangeEnd(2020, 11, 11);
+        picker.setSelectedItem(year, month);
+        picker.setOnDatePickListener(new DatePicker.OnYearMonthPickListener() {
             @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                textView.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
+            public void onDatePicked(String year, String month) {
+                textView.setText(year + "-" + month);
             }
-        }, year, month, dayOfMonth);
-        dialog.show();
+        });
+        picker.show();
     }
 
     @Override
