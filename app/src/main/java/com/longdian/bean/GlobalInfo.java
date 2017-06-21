@@ -6,5 +6,5 @@ package com.longdian.bean;
 
 public class GlobalInfo {
 
-    public static OprInfo oprInfo;
+    public static OprInfo oprInfo = new OprInfo();
 }

@@ -76,7 +76,7 @@ public abstract class TopBarBaseActivity extends AppCompatActivity {
         this.menuStr = menuStr;
     }
 
-    protected void setTopRightButton(String menuStr, int menuResId, OnClickListener onClickListener) {
+    public void setTopRightButton(String menuStr, int menuResId, OnClickListener onClickListener) {
         this.menuResId = menuResId;
         this.menuStr = menuStr;
         this.onClickListenerTopRight = onClickListener;
