@@ -1,4 +1,4 @@
-package com.longdian.fragment.dataanalysis.model;
+package com.longdian.fragment.dataanalysis;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

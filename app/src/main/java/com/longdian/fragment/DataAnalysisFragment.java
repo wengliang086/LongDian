@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import com.longdian.R;
 import com.longdian.activity.ContentActivity;
 import com.longdian.fragment.dataanalysis.EconomicsAnalysisFragment;
-import com.longdian.fragment.dataanalysis.model.WaterAnalysisFragment;
+import com.longdian.fragment.dataanalysis.WaterAnalysisFragment;
 import com.longdian.fragment.runningstate.TableFragment;
 
 public class DataAnalysisFragment extends Fragment implements View.OnClickListener {
