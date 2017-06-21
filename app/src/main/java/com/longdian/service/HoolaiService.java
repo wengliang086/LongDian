@@ -26,6 +26,9 @@ public interface HoolaiService {
     @GET("user/actualdata")
     Observable<HoolaiResponse<List<CollectExtendData>>> realtimeData();
 
+    @GET("user/historydata")
+    Observable<HoolaiResponse<List<CollectExtendData>>> historydata(@Query("eTime") String eTime);
+
     @GET("user/test1")
     Observable<HoolaiResponse<Map<String, Long>>> pieChart();
 

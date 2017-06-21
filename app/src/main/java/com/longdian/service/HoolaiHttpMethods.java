@@ -80,6 +80,10 @@ public class HoolaiHttpMethods {
         toObserverHoolai(context, service.realtimeData(), observerOnNextAndErrorListener);
     }
 
+    public void historyData(Context context, String eTime, ObserverOnNextAndErrorListener<List<CollectExtendData>> observerOnNextAndErrorListener) {
+        toObserverHoolai(context, service.historydata(eTime + " 00:00"), observerOnNextAndErrorListener);
+    }
+
     public void reportDay(Context context, String date, ObserverOnNextAndErrorListener<List<Map<String, String>>> observerOnNextAndErrorListener) {
         toObserverHoolai(context, service.reportDay(date), observerOnNextAndErrorListener);
     }
