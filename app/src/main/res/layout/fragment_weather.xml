@@ -5,7 +5,6 @@
     android:orientation="vertical"
     android:padding="15dp">
 
-
     <LinearLayout
         android:id="@+id/id_weather_now"
         android:layout_width="match_parent"
@@ -26,6 +25,36 @@
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:text="天气总览"
+            android:textColor="@android:color/black" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/right_arrow" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/id_weather_detail"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/jh_shape_corner_rectangle_gray"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_more_scan_code" />
+
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:text="天气详情"
             android:textColor="@android:color/black" />
 
         <ImageView
