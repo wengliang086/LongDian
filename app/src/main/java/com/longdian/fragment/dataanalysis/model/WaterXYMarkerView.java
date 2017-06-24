@@ -6,24 +6,25 @@ import android.widget.TextView;
 
 import com.github.mikephil.charting.components.MarkerView;
 import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.utils.MPPointF;
 import com.longdian.R;
 
 import java.text.DecimalFormat;
+import java.util.List;
+import java.util.Map;
 
-public class XYMarkerView extends MarkerView {
+public class WaterXYMarkerView extends MarkerView {
 
     private TextView tvContent;
-    private IAxisValueFormatter xAxisValueFormatter;
+    private List<Map<String, String>> lists;
 
     private DecimalFormat format;
 
-    public XYMarkerView(Context context, IAxisValueFormatter xAxisValueFormatter) {
+    public WaterXYMarkerView(Context context, List<Map<String, String>> lists) {
         super(context, R.layout.custom_marker_view);
 
-        this.xAxisValueFormatter = xAxisValueFormatter;
+        this.lists = lists;
         tvContent = (TextView) findViewById(R.id.tvContent);
         format = new DecimalFormat("###.0");
     }
@@ -32,7 +33,8 @@ public class XYMarkerView extends MarkerView {
     // content (user-interface)
     @Override
     public void refreshContent(Entry e, Highlight highlight) {
-        tvContent.setText("x: " + xAxisValueFormatter.getFormattedValue(e.getX(), null) + ", y: " + format.format(e.getY()));
+        String name = lists.get((int) e.getX()).get("stand_name");
+        tvContent.setText(name + " " + format.format(e.getY()));
         super.refreshContent(e, highlight);
     }
 

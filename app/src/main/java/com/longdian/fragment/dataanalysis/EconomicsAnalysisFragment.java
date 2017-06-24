@@ -29,12 +29,12 @@ public class EconomicsAnalysisFragment extends BaseDatePickerFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View baseView = inflater.inflate(R.layout.activity_scrollable_panel_test, container, false);
         init(baseView);
-        getData();
+        getData("2017-06-17", "2017-06-17", "");
         return baseView;
     }
 
-    private void getData() {
-        HoolaiHttpMethods.getInstance().reportEconomics(getActivity(), "2017-06-17", "2017-06-17", "", new ObserverOnNextAndErrorListener<List<Map<String, String>>>() {
+    private void getData(String start, String end, String name) {
+        HoolaiHttpMethods.getInstance().reportEconomics(getActivity(), start, end, name, new ObserverOnNextAndErrorListener<List<Map<String, String>>>() {
             @Override
             public void onNext(List<Map<String, String>> dataList) {
                 List<Integer> vs = Arrays.asList(80, 80, 80, 80, 80, 80, 80, 80, 80, 80);
@@ -56,7 +56,9 @@ public class EconomicsAnalysisFragment extends BaseDatePickerFragment {
 
     @Override
     protected void doSearch() {
-        getData();
+        String start = textViewStart.getText().toString();
+        String end = textViewEnd.getText().toString();
+        getData(start, end, "");
     }
 
     private List<List<String>> createData(List<Map<String, String>> list) {
