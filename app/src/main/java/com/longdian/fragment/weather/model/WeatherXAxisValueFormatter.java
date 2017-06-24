@@ -11,9 +11,9 @@ public class WeatherXAxisValueFormatter implements IAxisValueFormatter {
 
     private List<String> names = new ArrayList<>();
 
-    public WeatherXAxisValueFormatter(List<Map<String, Object>> mapList) {
-        for (Map<String, Object> m : mapList) {
-            names.add((String) m.get("d"));
+    public WeatherXAxisValueFormatter(List<Map<String, String>> mapList) {
+        for (Map<String, String> m : mapList) {
+            names.add(m.get("d"));
         }
     }
 

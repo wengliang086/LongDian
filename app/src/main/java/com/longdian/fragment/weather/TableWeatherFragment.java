@@ -14,6 +14,7 @@ import com.longdian.fragment.weather.model.WeatherData;
 import com.longdian.service.HoolaiException;
 import com.longdian.service.HoolaiHttpMethods;
 import com.longdian.service.base.ObserverOnNextAndErrorListener;
+import com.longdian.util.DateUtils;
 import com.longdian.util.ToastUtils;
 
 import java.util.ArrayList;
@@ -29,12 +30,15 @@ public class TableWeatherFragment extends BaseDatePickerFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View baseView = inflater.inflate(R.layout.activity_scrollable_panel_test, container, false);
         init(baseView);
-        getData();
+
+        textViewStart.setText(DateUtils.getYmdDate2());
+        textViewEnd.setText(DateUtils.getYmdDate2());
+        doSearch();
         return baseView;
     }
 
-    private void getData() {
-        HoolaiHttpMethods.getInstance().weatherList(getActivity(), new ObserverOnNextAndErrorListener<List<WeatherData>>() {
+    private void getData(String start, String end) {
+        HoolaiHttpMethods.getInstance().weatherList(getActivity(), start, end, new ObserverOnNextAndErrorListener<List<WeatherData>>() {
             @Override
             public void onNext(List<WeatherData> weatherDataList) {
                 List<Integer> vs = Arrays.asList(40, 80, 80, 80, 80, 80, 80, 80, 80);
@@ -56,7 +60,9 @@ public class TableWeatherFragment extends BaseDatePickerFragment {
 
     @Override
     protected void doSearch() {
-        getData();
+        String start = textViewStart.getText().toString();
+        String end = textViewEnd.getText().toString();
+        getData(start, end);
     }
 
     private List<List<String>> createData(List<WeatherData> list) {

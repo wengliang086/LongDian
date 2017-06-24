@@ -15,6 +15,7 @@ import com.longdian.R;
 import com.longdian.service.HoolaiException;
 import com.longdian.service.HoolaiHttpMethods;
 import com.longdian.service.base.ObserverOnNextAndErrorListener;
+import com.longdian.util.DateUtils;
 import com.longdian.util.ToastUtils;
 import com.longdian.view.mydatepicker.DatePicker;
 
@@ -33,7 +34,8 @@ public class ReportMonthFragment extends Fragment implements View.OnClickListene
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View baseView = inflater.inflate(R.layout.fragment_report_month, container, false);
         init(baseView);
-        getData("2017-06");
+        textViewStart.setText(DateUtils.getDateTime("yyyy-MM"));
+        getData(DateUtils.getDateTime("yyyy-MM"));
         return baseView;
     }
 
@@ -105,8 +107,8 @@ public class ReportMonthFragment extends Fragment implements View.OnClickListene
         DatePicker picker = new DatePicker(getActivity(), DatePicker.YEAR_MONTH);
         picker.setGravity(Gravity.CENTER);
         picker.setWidth((int) (picker.getScreenWidthPixels() * 0.6));
-        picker.setRangeStart(2016, 10, 14);
-        picker.setRangeEnd(2020, 11, 11);
+        picker.setRangeStart(2016, 1, 1);
+        picker.setRangeEnd(2020, 12, 31);
         picker.setSelectedItem(year, month);
         picker.setOnDatePickListener(new DatePicker.OnYearMonthPickListener() {
             @Override

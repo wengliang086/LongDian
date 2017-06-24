@@ -33,7 +33,7 @@ public class WeatherDetailTabFragment extends Fragment {
     public static final String DATAS = "datas";
     private LineChart mChart;
     private View baseView;
-    private List<Map<String, Object>> list;
+    private List<Map<String, String>> list;
 
     public static WeatherDetailTabFragment getInstance(WeatherData weatherData) {
         WeatherDetailTabFragment fragment = new WeatherDetailTabFragment();
@@ -49,7 +49,7 @@ public class WeatherDetailTabFragment extends Fragment {
         WeatherData weatherData = (WeatherData) getArguments().getSerializable(DATAS);
         String jsonArray = weatherData.getHour3Data();
         Gson gson = new Gson();
-        list = gson.fromJson(jsonArray, new TypeToken<List<Map<String, Object>>>() {
+        list = gson.fromJson(jsonArray, new TypeToken<List<Map<String, String>>>() {
         }.getType());
     }
 
@@ -138,7 +138,7 @@ public class WeatherDetailTabFragment extends Fragment {
         ArrayList<Entry> yVals1 = new ArrayList<>();
 
         for (int i = 0; i < list.size(); i++) {
-            float val = Float.parseFloat((String) list.get(i).get("w"));
+            float val = Float.parseFloat(list.get(i).get("w"));
             yVals1.add(new Entry(i, val));
         }
 

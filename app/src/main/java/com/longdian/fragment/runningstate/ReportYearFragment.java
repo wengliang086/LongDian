@@ -33,7 +33,11 @@ public class ReportYearFragment extends Fragment implements View.OnClickListener
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View baseView = inflater.inflate(R.layout.fragment_report_year, container, false);
         init(baseView);
-        getData("2017");
+
+        Calendar c = Calendar.getInstance();
+        String year = c.get(Calendar.YEAR) + "";
+        textViewStart.setText(year);
+        getData(year);
         return baseView;
     }
 
@@ -102,8 +106,8 @@ public class ReportYearFragment extends Fragment implements View.OnClickListener
         DatePicker picker = new DatePicker(getActivity(), DatePicker.YEAR);
         picker.setGravity(Gravity.CENTER);
         picker.setWidth((int) (picker.getScreenWidthPixels() * 0.6));
-        picker.setRangeStart(2016, 10, 14);
-        picker.setRangeEnd(2020, 11, 11);
+        picker.setRangeStart(2016, 1, 1);
+        picker.setRangeEnd(2020, 12, 31);
         picker.setSelectedItem(year, 1);
         picker.setOnDatePickListener(new DatePicker.OnYearMonthPickListener() {
             @Override

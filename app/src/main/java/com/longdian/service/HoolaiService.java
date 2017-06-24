@@ -47,7 +47,7 @@ public interface HoolaiService {
     Observable<HoolaiResponse<StationList>> stationList();
 
     @POST("user/weatherList")
-    Observable<HoolaiResponse<List<WeatherData>>> weatherList();
+    Observable<HoolaiResponse<List<WeatherData>>> weatherList(@Query("beginTime") String beginTime, @Query("endTime") String endTime);
 
     @POST("user/weatherDetail")
     Observable<HoolaiResponse<List<WeatherData>>> weatherDetail();

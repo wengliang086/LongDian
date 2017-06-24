@@ -104,8 +104,8 @@ public class HoolaiHttpMethods {
         toObserverHoolai(context, service.stationList(), observerOnNextAndErrorListener);
     }
 
-    public void weatherList(Context context, ObserverOnNextAndErrorListener<List<WeatherData>> observerOnNextAndErrorListener) {
-        toObserverHoolai(context, service.weatherList(), observerOnNextAndErrorListener);
+    public void weatherList(Context context, String start, String end, ObserverOnNextAndErrorListener<List<WeatherData>> observerOnNextAndErrorListener) {
+        toObserverHoolai(context, service.weatherList(start, end), observerOnNextAndErrorListener);
     }
 
     public void weatherDetail(Context context, ObserverOnNextAndErrorListener<List<WeatherData>> observerOnNextAndErrorListener) {

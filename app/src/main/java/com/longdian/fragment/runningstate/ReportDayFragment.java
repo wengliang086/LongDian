@@ -12,6 +12,7 @@ import com.longdian.fragment.BaseDatePickerFragment;
 import com.longdian.service.HoolaiException;
 import com.longdian.service.HoolaiHttpMethods;
 import com.longdian.service.base.ObserverOnNextAndErrorListener;
+import com.longdian.util.DateUtils;
 import com.longdian.util.ToastUtils;
 
 import java.util.ArrayList;
@@ -28,7 +29,8 @@ public class ReportDayFragment extends BaseDatePickerFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View baseView = inflater.inflate(R.layout.fragment_report_day, container, false);
         init(baseView);
-        getData("2017-06-17");
+        textViewStart.setText(DateUtils.getYmdDate2());
+        getData(DateUtils.getYmdDate2());
         return baseView;
     }
 

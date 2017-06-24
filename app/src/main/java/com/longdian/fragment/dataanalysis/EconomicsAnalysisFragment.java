@@ -13,6 +13,7 @@ import com.longdian.fragment.runningstate.TestPanelAdapter;
 import com.longdian.service.HoolaiException;
 import com.longdian.service.HoolaiHttpMethods;
 import com.longdian.service.base.ObserverOnNextAndErrorListener;
+import com.longdian.util.DateUtils;
 import com.longdian.util.ToastUtils;
 
 import java.util.ArrayList;
@@ -29,7 +30,10 @@ public class EconomicsAnalysisFragment extends BaseDatePickerFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View baseView = inflater.inflate(R.layout.activity_scrollable_panel_test, container, false);
         init(baseView);
-        getData("2017-06-17", "2017-06-17", "");
+
+        textViewStart.setText(DateUtils.getYmdDate2());
+        textViewEnd.setText(DateUtils.getYmdDate2());
+        getData(DateUtils.getYmdDate2(), DateUtils.getYmdDate2(), "");
         return baseView;
     }
 

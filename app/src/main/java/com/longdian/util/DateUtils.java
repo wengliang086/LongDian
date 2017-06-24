@@ -148,6 +148,16 @@ public class DateUtils {
     }
 
     /**
+     * 获取日期格式为 yyyy-MM-dd 日期
+     */
+    public static String getYmdDate2() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String retStr = sdf.format(new Date());
+//        return retStr;
+        return "2017-06-17";
+    }
+
+    /**
      * 时间格式转换 HHmmss 转成  HH:mm:ss
      *
      * @param tm
@@ -287,7 +297,7 @@ public class DateUtils {
     public static void geta() {
 
 /*	    Locale locale = new Locale("en", "US");  
-	    System.out.println(locale.getDisplayCountry(Locale.US));
+        System.out.println(locale.getDisplayCountry(Locale.US));
 	    
 	    //Locale locale2 = Locale.CHINA; 
 	    //Calendar cal =  Calendar.getInstance(locale);
@@ -319,8 +329,8 @@ public class DateUtils {
                 System.out.println(":" + df2.format(date));
             }
         }
-	    /*DateFormat.getDateTimeInstance(dateStyle, timeStyle, aLocale)
-	    DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT, locale);
+        /*DateFormat.getDateTimeInstance(dateStyle, timeStyle, aLocale)
+        DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT, locale);
 	    DateFormat df1 = DateFormat.getDateInstance(DateFormat.HOUR0_FIELD, locale);
 	    DateFormat df2 = DateFormat.getDateInstance(DateFormat.HOUR1_FIELD, locale);
 	    System.out.println(df.format(date));  
@@ -329,8 +339,8 @@ public class DateUtils {
     }
 
     public static void getb() {
-		/*TimeZone timeZoneFL = TimeZone.getDefault();
-		System.out.println("/n" + timeZoneFL.getDisplayName());
+        /*TimeZone timeZoneFL = TimeZone.getDefault();
+        System.out.println("/n" + timeZoneFL.getDisplayName());
 		System.out.println("RawOffset: " + timeZoneFL.getRawOffset());
 		System.out.println("Uses daylight saving: " + timeZoneFL.useDaylightTime());
 		
@@ -372,7 +382,7 @@ public class DateUtils {
     }
 
     public static void main(String[] args) {
-        getb();
+        System.out.println(getYmdDate2());
     }
 
 }

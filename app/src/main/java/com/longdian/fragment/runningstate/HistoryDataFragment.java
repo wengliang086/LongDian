@@ -13,6 +13,7 @@ import com.longdian.fragment.dataanalysis.model.CollectExtendData;
 import com.longdian.service.HoolaiException;
 import com.longdian.service.HoolaiHttpMethods;
 import com.longdian.service.base.ObserverOnNextAndErrorListener;
+import com.longdian.util.DateUtils;
 import com.longdian.util.ToastUtils;
 
 import java.util.List;
@@ -25,7 +26,8 @@ public class HistoryDataFragment extends BaseDatePickerFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View baseView = inflater.inflate(R.layout.fragment_history_data, container, false);
         init(baseView);
-        getData("2017-06-17");
+        textViewStart.setText(DateUtils.getYmdDate2());
+        getData(DateUtils.getYmdDate2());
         return baseView;
     }
 

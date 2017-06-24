@@ -15,6 +15,7 @@ import com.longdian.fragment.BaseDatePickerFragment;
 import com.longdian.service.HoolaiException;
 import com.longdian.service.HoolaiHttpMethods;
 import com.longdian.service.base.ObserverOnNextAndErrorListener;
+import com.longdian.util.DateUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,8 +48,8 @@ public class HeatAnalysisFragment extends BaseDatePickerFragment {
         });
         fragmentManager = activity.getSupportFragmentManager();
 
-        textViewStart.setText("2017-06-17");
-        textViewEnd.setText("2017-06-17");
+        textViewStart.setText(DateUtils.getYmdDate2());
+        textViewEnd.setText(DateUtils.getYmdDate2());
         doSearch();
         return baseView;
     }
