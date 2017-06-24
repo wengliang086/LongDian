@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import com.kelin.scrollablepanel.library.ScrollablePanel;
 import com.longdian.R;
 import com.longdian.fragment.runningstate.TestPanelAdapter;
-import com.longdian.util.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,19 +26,20 @@ public class ElectricAnalysisFragment1 extends Fragment {
         View baseView = inflater.inflate(R.layout.fragment_data_anaysis_water1, container, false);
         scrollablePanel = (ScrollablePanel) baseView.findViewById(R.id.id_scrollable_panel);
 
-        ToastUtils.showToast(getActivity(), "111");
-        List<Map<String, String>> lists = WaterAnalysisFragment.list;
-        TestPanelAdapter testPanelAdapter = new TestPanelAdapter(createData(lists));
+        List<Map<String, String>> lists = ElectricAnalysisFragment.list;
+
+        List<Integer> vs = Arrays.asList(80, 80, 80, 80, 80, 80, 80, 80);
+        TestPanelAdapter testPanelAdapter = new TestPanelAdapter(createData(lists), TestPanelAdapter.width_type_dp, vs);
         scrollablePanel.setPanelAdapter(testPanelAdapter);
         return baseView;
     }
 
     private List<List<String>> createData(List<Map<String, String>> list) {
         List<List<String>> datas = new ArrayList<>();
-        datas.add(Arrays.asList("序号", "预报日期", "白天最高温", "夜晚最底温", "平均温度", "白天天气状况", "夜晚天气状况", "白天风力风向", "夜晚风力风向"));
+        datas.add(Arrays.asList("换热站名称", "实际面积(m²)", "日期", "用电量", "运行单耗(T/m²)", "统计时间(小时)", "开始时间", "结束时间"));
         for (int i = 0; i < list.size(); i++) {
             Map<String, String> s = list.get(i);
-            List<String> row = Arrays.asList(i + 1 + "", s.get(""), s.get(""), s.get(""), s.get(""), s.get(""), s.get(""), s.get(""), s.get(""));
+            List<String> row = Arrays.asList(s.get("station_name"), s.get("real_area"), s.get("dt"), s.get("jqi_total"), s.get("yxdhstr"), s.get("hours"), s.get("bDateTime"), s.get("eDateTime"));
             datas.add(row);
         }
         return datas;

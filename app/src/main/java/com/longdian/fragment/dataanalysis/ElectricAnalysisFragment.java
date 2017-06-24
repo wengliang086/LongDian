@@ -47,6 +47,8 @@ public class ElectricAnalysisFragment extends BaseDatePickerFragment {
         });
         fragmentManager = activity.getSupportFragmentManager();
 
+        textViewStart.setText("2017-06-17");
+        textViewEnd.setText("2017-06-17");
         doSearch();
         return baseView;
     }
@@ -62,7 +64,7 @@ public class ElectricAnalysisFragment extends BaseDatePickerFragment {
         String start = textViewStart.getText().toString();
         String end = textViewEnd.getText().toString();
 
-        HoolaiHttpMethods.getInstance().analysisWater(getActivity(), start, end, "", new ObserverOnNextAndErrorListener<List<Map<String, String>>>() {
+        HoolaiHttpMethods.getInstance().analysisElectricity(getActivity(), start, end, "", new ObserverOnNextAndErrorListener<List<Map<String, String>>>() {
             @Override
             public void onNext(List<Map<String, String>> maps) {
                 list = maps;

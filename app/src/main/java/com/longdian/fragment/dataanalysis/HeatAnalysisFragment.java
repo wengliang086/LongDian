@@ -47,6 +47,8 @@ public class HeatAnalysisFragment extends BaseDatePickerFragment {
         });
         fragmentManager = activity.getSupportFragmentManager();
 
+        textViewStart.setText("2017-06-17");
+        textViewEnd.setText("2017-06-17");
         doSearch();
         return baseView;
     }
