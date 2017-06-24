@@ -20,8 +20,9 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.longdian.R;
-import com.longdian.fragment.dataanalysis.model.DayAxisValueFormatter;
 import com.longdian.fragment.weather.model.WeatherData;
+import com.longdian.fragment.weather.model.WeatherXAxisValueFormatter;
+import com.longdian.fragment.weather.model.WeatherYAxisValueFormatter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,7 +86,7 @@ public class WeatherDetailTabFragment extends Fragment {
         mChart.setBackgroundColor(Color.LTGRAY);
 
         // add data
-        setData(10, 30);
+        setData();
 
         mChart.animateX(2500);
 
@@ -101,7 +102,7 @@ public class WeatherDetailTabFragment extends Fragment {
         l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
         l.setDrawInside(false);
 //        l.setYOffset(11f);
-        IAxisValueFormatter xAxisFormatter = new DayAxisValueFormatter(mChart);
+        IAxisValueFormatter xAxisFormatter = new WeatherXAxisValueFormatter(list);
 
         XAxis xAxis = mChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -113,53 +114,47 @@ public class WeatherDetailTabFragment extends Fragment {
         xAxis.setLabelCount(7);
         xAxis.setValueFormatter(xAxisFormatter);
 
+        WeatherYAxisValueFormatter yf = new WeatherYAxisValueFormatter();
+
         YAxis leftAxis = mChart.getAxisLeft();
-        leftAxis.setTextColor(ColorTemplate.getHoloBlue());
-        leftAxis.setAxisMaximum(200f);
+        leftAxis.setTextColor(Color.RED);
+        leftAxis.setAxisMaximum(40f);
         leftAxis.setAxisMinimum(0f);
         leftAxis.setDrawGridLines(true);
         leftAxis.setGranularityEnabled(true);
+        leftAxis.setValueFormatter(yf);
 
         YAxis rightAxis = mChart.getAxisRight();
         rightAxis.setTextColor(Color.RED);
-        rightAxis.setAxisMaximum(900);
-        rightAxis.setAxisMinimum(-200);
+        rightAxis.setAxisMaximum(40f);
+        rightAxis.setAxisMinimum(0);
         rightAxis.setDrawGridLines(false);
         rightAxis.setDrawZeroLine(false);
         rightAxis.setGranularityEnabled(false);
+        rightAxis.setValueFormatter(yf);
     }
 
-    private void setData(int count, float range) {
-        ArrayList<Entry> yVals1 = new ArrayList<Entry>();
+    private void setData() {
+        ArrayList<Entry> yVals1 = new ArrayList<>();
 
-        for (int i = 0; i < count; i++) {
-            float mult = range / 2f;
-            float val = (float) (Math.random() * mult) + 50;
+        for (int i = 0; i < list.size(); i++) {
+            float val = Float.parseFloat((String) list.get(i).get("w"));
             yVals1.add(new Entry(i, val));
         }
 
-        ArrayList<Entry> yVals2 = new ArrayList<Entry>();
-
-        for (int i = 0; i < count; i++) {
-            float val = (float) (Math.random() * range) + 450;
-            yVals2.add(new Entry(i, val));
-        }
-
-        LineDataSet set1, set2;
+        LineDataSet set1;
 
         if (mChart.getData() != null && mChart.getData().getDataSetCount() > 0) {
             set1 = (LineDataSet) mChart.getData().getDataSetByIndex(0);
-            set2 = (LineDataSet) mChart.getData().getDataSetByIndex(1);
             set1.setValues(yVals1);
-            set2.setValues(yVals2);
             mChart.getData().notifyDataChanged();
             mChart.notifyDataSetChanged();
         } else {
             // create a dataset and give it a type
-            set1 = new LineDataSet(yVals1, "低温");
+            set1 = new LineDataSet(yVals1, "温度");
 
             set1.setAxisDependency(YAxis.AxisDependency.LEFT);
-            set1.setColor(ColorTemplate.getHoloBlue());
+            set1.setColor(Color.RED);
             set1.setCircleColor(Color.WHITE);
             set1.setLineWidth(2f);
             set1.setCircleRadius(3f);
@@ -172,21 +167,8 @@ public class WeatherDetailTabFragment extends Fragment {
             //set1.setVisible(false);
             //set1.setCircleHoleColor(Color.WHITE);
 
-            // create a dataset and give it a type
-            set2 = new LineDataSet(yVals2, "高温");
-            set2.setAxisDependency(YAxis.AxisDependency.RIGHT);
-            set2.setColor(Color.RED);
-            set2.setCircleColor(Color.WHITE);
-            set2.setLineWidth(2f);
-            set2.setCircleRadius(3f);
-            set2.setFillAlpha(65);
-            set2.setFillColor(Color.RED);
-            set2.setDrawCircleHole(false);
-            set2.setHighLightColor(Color.rgb(244, 117, 117));
-            //set2.setFillFormatter(new MyFillFormatter(900f));
-
             // create a data object with the datasets
-            LineData data = new LineData(set1, set2);
+            LineData data = new LineData(set1);
             data.setValueTextColor(Color.WHITE);
             data.setValueTextSize(9f);
 
