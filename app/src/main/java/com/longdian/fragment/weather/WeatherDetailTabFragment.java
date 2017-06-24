@@ -17,15 +17,40 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.longdian.R;
 import com.longdian.fragment.dataanalysis.model.DayAxisValueFormatter;
+import com.longdian.fragment.weather.model.WeatherData;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class WeatherDetailTabFragment extends Fragment {
 
+    public static final String DATAS = "datas";
     private LineChart mChart;
     private View baseView;
+    private List<Map<String, Object>> list;
+
+    public static WeatherDetailTabFragment getInstance(WeatherData weatherData) {
+        WeatherDetailTabFragment fragment = new WeatherDetailTabFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(DATAS, weatherData);
+        fragment.setArguments(bundle);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        WeatherData weatherData = (WeatherData) getArguments().getSerializable(DATAS);
+        String jsonArray = weatherData.getHour3Data();
+        Gson gson = new Gson();
+        list = gson.fromJson(jsonArray, new TypeToken<List<Map<String, Object>>>() {
+        }.getType());
+    }
 
     @Nullable
     @Override

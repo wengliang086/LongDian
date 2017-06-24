@@ -30,16 +30,19 @@ public class WeatherDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         baseView = inflater.inflate(R.layout.fragment_weather_detail, container, false);
-        initView();
         getData();
         return baseView;
     }
 
-    private void initView() {
+    private void initView(List<WeatherData> weatherDataList) {
         TabLayout tabLayout = (TabLayout) baseView.findViewById(R.id.id_find_tabLayout);
-        for (String title : titles) {
-            tabLayout.addTab(tabLayout.newTab().setText(title));
-            fragments.add(new WeatherDetailTabFragment());
+        int days = weatherDataList.size();
+        if (days > titles.size()) {
+            days = titles.size();
+        }
+        for (int i = 0; i < days; i++) {
+            tabLayout.addTab(tabLayout.newTab().setText(titles.get(i)));
+            fragments.add(WeatherDetailTabFragment.getInstance(weatherDataList.get(i)));
         }
         ViewPager viewPager = (ViewPager) baseView.findViewById(R.id.id_find_viewPager);
         viewPager.setAdapter(new TabLayoutFragmentPagerAdapter(getActivity().getSupportFragmentManager(), fragments, titles));
@@ -50,6 +53,7 @@ public class WeatherDetailFragment extends Fragment {
         HoolaiHttpMethods.getInstance().weatherDetail(getActivity(), new ObserverOnNextAndErrorListener<List<WeatherData>>() {
             @Override
             public void onNext(List<WeatherData> weatherDataList) {
+                initView(weatherDataList);
             }
 
             @Override

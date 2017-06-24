@@ -12,15 +12,21 @@ import com.longdian.R;
 import com.longdian.fragment.base.model.StandData;
 import com.longdian.fragment.base.model.StationData;
 import com.longdian.fragment.base.model.StationList;
+import com.longdian.util.LogUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MyStationRecyclerViewAdapter extends RecyclerView.Adapter<MyStationRecyclerViewAdapter.ViewHolder> {
 
     private StationList stationList;
+    private List<Boolean> openList = new ArrayList<>();// 存储打开状态
 
     public MyStationRecyclerViewAdapter(StationList stationList) {
         this.stationList = stationList;
+        for (int i = 0; i < stationList.getStationDataList().size(); i++) {
+            openList.add(false);
+        }
     }
 
     @Override
@@ -30,36 +36,50 @@ public class MyStationRecyclerViewAdapter extends RecyclerView.Adapter<MyStation
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         final StationData s = stationList.getStationDataList().get(position);
         holder.mIdView.setText(s.getStationName());
         holder.mContentView.setText(s.getPersonnel());
 
-        holder.mView.setOnClickListener(new View.OnClickListener() {
+        if (openList.get(position)) {
+            onShow(holder, s);
+        } else {
+            onHide(holder);
+        }
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LinearLayout ll = holder.linearLayout;
-                int a = ll.getVisibility();
-                if (a == View.GONE) {
-                    holder.imageView.setImageResource(R.drawable.ic_wind_5);
-                    ll.setVisibility(View.VISIBLE);
-
-                    if (ll.getChildCount() <= 1) {// 防止重复添加
-                        List<StandData> list = stationList.getById(s.getStationId());
-                        for (StandData data : list) {
-                            View vv = LayoutInflater.from(v.getContext()).inflate(R.layout.fragment_station_2, ll, false);
-                            ((TextView) vv.findViewById(R.id.id_stand_name)).setText(data.getStandName());
-                            ((TextView) vv.findViewById(R.id.id_stand_d_area)).setText(data.getDesignArea() + "");
-                            ((TextView) vv.findViewById(R.id.id_stand_r_area)).setText(data.getRealArea() + "");
-                            ll.addView(vv);
-                        }
-                    }
+                if (holder.linearLayout.getVisibility() == View.GONE) {
+                    openList.set(position, true);
+                    onShow(holder, s);
                 } else {
-                    holder.imageView.setImageResource(R.drawable.ic_wind_3);
-                    ll.setVisibility(View.GONE);
+                    openList.set(position, false);
+                    onHide(holder);
                 }
             }
         });
+    }
+
+    private void onHide(ViewHolder holder) {
+        holder.imageView.setImageResource(R.drawable.ic_wind_3);
+        holder.linearLayout.setVisibility(View.GONE);
+    }
+
+    private void onShow(ViewHolder holder, StationData s) {
+        LinearLayout ll = holder.linearLayout;
+        holder.imageView.setImageResource(R.drawable.ic_wind_5);
+        ll.setVisibility(View.VISIBLE);
+        ll.removeAllViews();
+        LogUtil.e("添加");
+        List<StandData> list = stationList.getById(s.getStationId());
+        for (StandData data : list) {
+            View vv = LayoutInflater.from(holder.itemView.getContext()).inflate(R.layout.fragment_station_2, ll, false);
+            ((TextView) vv.findViewById(R.id.id_stand_name)).setText(data.getStandName());
+            ((TextView) vv.findViewById(R.id.id_stand_d_area)).setText(data.getDesignArea() + "");
+            ((TextView) vv.findViewById(R.id.id_stand_r_area)).setText(data.getRealArea() + "");
+            ll.addView(vv);
+        }
     }
 
     @Override
@@ -69,15 +89,13 @@ public class MyStationRecyclerViewAdapter extends RecyclerView.Adapter<MyStation
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public final View mView;
-        public final TextView mIdView;
-        public final TextView mContentView;
+        TextView mIdView;
+        TextView mContentView;
         ImageView imageView;
         LinearLayout linearLayout;
 
         public ViewHolder(View view) {
             super(view);
-            mView = view;
             mIdView = (TextView) view.findViewById(R.id.id);
             mContentView = (TextView) view.findViewById(R.id.content);
             imageView = (ImageView) view.findViewById(R.id.id_station_arraw);
