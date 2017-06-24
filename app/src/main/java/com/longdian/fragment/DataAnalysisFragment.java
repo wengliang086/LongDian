@@ -9,8 +9,9 @@ import android.view.ViewGroup;
 import com.longdian.R;
 import com.longdian.activity.ContentActivity;
 import com.longdian.fragment.dataanalysis.EconomicsAnalysisFragment;
+import com.longdian.fragment.dataanalysis.ElectricAnalysisFragment;
+import com.longdian.fragment.dataanalysis.HeatAnalysisFragment;
 import com.longdian.fragment.dataanalysis.WaterAnalysisFragment;
-import com.longdian.fragment.runningstate.TableFragment;
 
 public class DataAnalysisFragment extends Fragment implements View.OnClickListener {
 
@@ -33,10 +34,10 @@ public class DataAnalysisFragment extends Fragment implements View.OnClickListen
                 ContentActivity.start(getActivity(), WaterAnalysisFragment.class, "水耗分析");
                 break;
             case R.id.id_heat_consum:
-                ContentActivity.start(getActivity(), TableFragment.class, "热耗分析");
+                ContentActivity.start(getActivity(), HeatAnalysisFragment.class, "热耗分析");
                 break;
             case R.id.id_electric_consum:
-                ContentActivity.start(getActivity(), TableFragment.class, "电耗分析");
+                ContentActivity.start(getActivity(), ElectricAnalysisFragment.class, "电耗分析");
                 break;
             case R.id.id_economics_analysis:
                 ContentActivity.start(getActivity(), EconomicsAnalysisFragment.class, "经济分析报表");

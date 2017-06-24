@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class WaterAnalysisFragment extends BaseDatePickerFragment {
+public class ElectricAnalysisFragment extends BaseDatePickerFragment {
 
     private FragmentManager fragmentManager;
     private boolean isChart = false;
@@ -38,9 +38,9 @@ public class WaterAnalysisFragment extends BaseDatePickerFragment {
             @Override
             public void onClick() {
                 if (isChart) {
-                    replaceFragment(new WaterAnalysisFragment1());
+                    replaceFragment(new ElectricAnalysisFragment1());
                 } else {
-                    replaceFragment(new WaterAnalysisFragment2());
+                    replaceFragment(new ElectricAnalysisFragment2());
                 }
                 isChart = !isChart;
             }
@@ -67,9 +67,9 @@ public class WaterAnalysisFragment extends BaseDatePickerFragment {
             public void onNext(List<Map<String, String>> maps) {
                 list = maps;
                 if (!isChart) {
-                    replaceFragment(new WaterAnalysisFragment1());
+                    replaceFragment(new ElectricAnalysisFragment1());
                 } else {
-                    replaceFragment(new WaterAnalysisFragment2());
+                    replaceFragment(new ElectricAnalysisFragment2());
                 }
             }
 

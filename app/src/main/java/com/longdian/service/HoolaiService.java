@@ -12,7 +12,6 @@ import java.util.Map;
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface HoolaiService {
@@ -50,19 +49,31 @@ public interface HoolaiService {
     @POST("user/weatherList")
     Observable<HoolaiResponse<List<WeatherData>>> weatherList();
 
+    @POST("user/weatherDetail")
+    Observable<HoolaiResponse<List<WeatherData>>> weatherDetail();
+
     @POST("user/weatherIndex")
     Observable<HoolaiResponse<WeatherDataAll>> weatherIndex();
 
-    @POST("login/getRegisterCode.hl")
-    Observable<HoolaiResponse<String>> getRegistVerifyCode(@Query("productId") int productId, @Query("mobile") String mobile);
+    @POST("user/analysisWater")
+    Observable<HoolaiResponse<List<Map<String, String>>>> analysisWater(
+            @Query("beginTime") String beginTime,
+            @Query("endTime") String endTime,
+            @Query("stationName") String stationName
+    );
 
+    @POST("user/analysisElectricity")
+    Observable<HoolaiResponse<List<Map<String, String>>>> analysisElectricity(
+            @Query("beginTime") String beginTime,
+            @Query("endTime") String endTime,
+            @Query("stationName") String stationName
+    );
 
-    @POST("user/{uidP}/bind/email/{emailP}")
-    Observable<HoolaiResponse<String>> bindPhoneWithPassword(
-            @Path("uidP") long uidP,
-            @Path("emailP") String emailP,
-            @Query("uid") long uid,
-            @Query("email") String email
+    @POST("user/analysisHeat")
+    Observable<HoolaiResponse<List<Map<String, String>>>> analysisHeat(
+            @Query("beginTime") String beginTime,
+            @Query("endTime") String endTime,
+            @Query("stationName") String stationName
     );
 
 }

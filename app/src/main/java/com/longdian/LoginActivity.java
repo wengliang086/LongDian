@@ -37,6 +37,11 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (2 > 1) {
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            finish();
+            return;
+        }
         setContentView(R.layout.activity_login);
 //        getSupportActionBar().hide();
         ButterKnife.bind(this);

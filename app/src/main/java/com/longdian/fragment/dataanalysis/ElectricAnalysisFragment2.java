@@ -36,7 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class WaterAnalysisFragment2 extends Fragment implements OnChartValueSelectedListener {
+public class ElectricAnalysisFragment2 extends Fragment implements OnChartValueSelectedListener {
 
     protected BarChart mChart;
 
@@ -110,7 +110,7 @@ public class WaterAnalysisFragment2 extends Fragment implements OnChartValueSele
         mv.setChartView(mChart); // For bounds control
         mChart.setMarker(mv); // Set the marker to the chart
 
-        setData(7, 50);
+        setData(12, 50);
         return baseView;
     }
 
@@ -120,7 +120,7 @@ public class WaterAnalysisFragment2 extends Fragment implements OnChartValueSele
 
         ArrayList<BarEntry> yVals1 = new ArrayList<BarEntry>();
 
-        for (int i = (int) start; i < start + count; i++) {
+        for (int i = (int) start; i < start + count + 1; i++) {
             float mult = (range + 1);
             float val = (float) (Math.random() * mult);
 

@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class WaterAnalysisFragment extends BaseDatePickerFragment {
+public class HeatAnalysisFragment extends BaseDatePickerFragment {
 
     private FragmentManager fragmentManager;
     private boolean isChart = false;
@@ -38,9 +38,9 @@ public class WaterAnalysisFragment extends BaseDatePickerFragment {
             @Override
             public void onClick() {
                 if (isChart) {
-                    replaceFragment(new WaterAnalysisFragment1());
+                    replaceFragment(new HeatAnalysisFragment1());
                 } else {
-                    replaceFragment(new WaterAnalysisFragment2());
+                    replaceFragment(new HeatAnalysisFragment2());
                 }
                 isChart = !isChart;
             }
@@ -62,14 +62,14 @@ public class WaterAnalysisFragment extends BaseDatePickerFragment {
         String start = textViewStart.getText().toString();
         String end = textViewEnd.getText().toString();
 
-        HoolaiHttpMethods.getInstance().analysisWater(getActivity(), start, end, "", new ObserverOnNextAndErrorListener<List<Map<String, String>>>() {
+        HoolaiHttpMethods.getInstance().analysisHeat(getActivity(), start, end, "", new ObserverOnNextAndErrorListener<List<Map<String, String>>>() {
             @Override
             public void onNext(List<Map<String, String>> maps) {
                 list = maps;
                 if (!isChart) {
-                    replaceFragment(new WaterAnalysisFragment1());
+                    replaceFragment(new HeatAnalysisFragment1());
                 } else {
-                    replaceFragment(new WaterAnalysisFragment2());
+                    replaceFragment(new HeatAnalysisFragment1());
                 }
             }
 

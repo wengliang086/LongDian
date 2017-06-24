@@ -108,9 +108,25 @@ public class HoolaiHttpMethods {
         toObserverHoolai(context, service.weatherList(), observerOnNextAndErrorListener);
     }
 
+    public void weatherDetail(Context context, ObserverOnNextAndErrorListener<List<WeatherData>> observerOnNextAndErrorListener) {
+        toObserverHoolai(context, service.weatherDetail(), observerOnNextAndErrorListener);
+    }
+
     public void weatherIndex(Context context, ObserverOnNextAndErrorListener<WeatherDataAll> observerOnNextAndErrorListener) {
         Observer<WeatherDataAll> observer = new ProgressObserver<>(context, observerOnNextAndErrorListener, false);
         toObserverHoolai(service.weatherIndex(), observer);
+    }
+
+    public void analysisWater(Context context, String start, String end, String name, ObserverOnNextAndErrorListener<List<Map<String, String>>> observerOnNextAndErrorListener) {
+        toObserverHoolai(context, service.analysisWater(start, end, name), observerOnNextAndErrorListener);
+    }
+
+    public void analysisElectricity(Context context, String start, String end, String name, ObserverOnNextAndErrorListener<List<Map<String, String>>> observerOnNextAndErrorListener) {
+        toObserverHoolai(context, service.analysisElectricity(start, end, name), observerOnNextAndErrorListener);
+    }
+
+    public void analysisHeat(Context context, String start, String end, String name, ObserverOnNextAndErrorListener<List<Map<String, String>>> observerOnNextAndErrorListener) {
+        toObserverHoolai(context, service.analysisHeat(start, end, name), observerOnNextAndErrorListener);
     }
 
     /**

@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class WaterAnalysisFragment1 extends Fragment {
+public class HeatAnalysisFragment1 extends Fragment {
 
     private ScrollablePanel scrollablePanel;
 

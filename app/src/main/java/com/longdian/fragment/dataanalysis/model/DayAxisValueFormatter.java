@@ -63,7 +63,7 @@ public class DayAxisValueFormatter implements IAxisValueFormatter {
                     break;
             }
 
-            return dayOfMonth == 0 ? "" : dayOfMonth + appendix + " " + monthName;
+            return dayOfMonth == 0 ? "0a" : dayOfMonth + appendix;
         }
     }
 
