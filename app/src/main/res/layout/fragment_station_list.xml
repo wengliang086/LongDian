@@ -6,7 +6,9 @@
     android:name="com.longdian.fragment.base.StationFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_divider_line"
+    android:background="@color/gray_background_color"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
     app:layoutManager="LinearLayoutManager"
     tools:context="com.longdian.fragment.base.StationFragment"
     tools:listitem="@layout/fragment_station" />

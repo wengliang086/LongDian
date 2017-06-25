@@ -2,32 +2,39 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="0.5dp"
+    android:layout_marginTop="10dp"
     android:background="@color/white"
     android:orientation="vertical">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_margin"
-            android:text="建设小区"
-            android:textAppearance="?attr/textAppearanceListItem" />
-
-        <TextView
-            android:id="@+id/content"
+            android:id="@+id/id_station_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/text_margin"
-            android:layout_weight="1"
-            android:text="personnel"
-            android:textAppearance="?attr/textAppearanceListItem" />
+            android:layout_weight="5"
+            android:text="建设小区"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/id_persion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:text="负责人\nphoenix" />
+
+        <TextView
+            android:id="@+id/id_phone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:text="负责人电话\n13822229999" />
 
         <ImageView
             android:id="@+id/id_station_arraw"
@@ -37,12 +44,5 @@
             android:src="@drawable/ic_more_pressed" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/id_station_linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <!--<include layout="@layout/fragment_station_2" />-->
-    </LinearLayout>
+    <include layout="@layout/fragment_station_2" />
 </LinearLayout>

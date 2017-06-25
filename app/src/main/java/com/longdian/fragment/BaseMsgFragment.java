@@ -39,8 +39,6 @@ public class BaseMsgFragment extends Fragment implements View.OnClickListener {
                 ContentActivity.start(getActivity(), BaseMsgUpdatePasswordFragment.class, "修改密码");
                 break;
             case R.id.id_qr_code:
-//                ContentActivity.start(getActivity(), BaseMsgQrCodeFragment.class);
-//                ContentActivity.start(getActivity(), TableStationFragment.class, "换热站信息");
                 ContentActivity.start(getActivity(), StationFragment.class, "换热站信息");
                 break;
             case R.id.id_about_system:

@@ -38,8 +38,9 @@ public class MyStationRecyclerViewAdapter extends RecyclerView.Adapter<MyStation
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         final StationData s = stationList.getStationDataList().get(position);
-        holder.mIdView.setText(s.getStationName());
-        holder.mContentView.setText(s.getPersonnel());
+        holder.stationName.setText(s.getStationName());
+        holder.persion.setText("负责人\n" + s.getPersonnel());
+        holder.phone.setText("负责人电话\n" + s.getTelephone());
 
         if (openList.get(position)) {
             onShow(holder, s);
@@ -50,7 +51,7 @@ public class MyStationRecyclerViewAdapter extends RecyclerView.Adapter<MyStation
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (holder.linearLayout.getVisibility() == View.GONE) {
+                if (((LinearLayout) holder.itemView).getChildCount() == 1) {
                     openList.set(position, true);
                     onShow(holder, s);
                 } else {
@@ -63,21 +64,23 @@ public class MyStationRecyclerViewAdapter extends RecyclerView.Adapter<MyStation
 
     private void onHide(ViewHolder holder) {
         holder.imageView.setImageResource(R.drawable.ic_more_pressed);
-        holder.linearLayout.setVisibility(View.GONE);
+
+        LinearLayout ll = (LinearLayout) holder.itemView;
+        for (int i = ll.getChildCount() - 1; i >= 1; i--) {
+            ll.removeViewAt(i);
+        }
     }
 
     private void onShow(ViewHolder holder, StationData s) {
-        LinearLayout ll = holder.linearLayout;
         holder.imageView.setImageResource(R.drawable.ic_triangle_down);
-        ll.setVisibility(View.VISIBLE);
-        ll.removeAllViews();
+        LinearLayout ll = (LinearLayout) holder.itemView;
         LogUtil.e("添加");
         List<StandData> list = stationList.getById(s.getStationId());
         for (StandData data : list) {
             View vv = LayoutInflater.from(holder.itemView.getContext()).inflate(R.layout.fragment_station_2, ll, false);
             ((TextView) vv.findViewById(R.id.id_stand_name)).setText(data.getStandName());
-            ((TextView) vv.findViewById(R.id.id_stand_d_area)).setText(data.getDesignArea() + "");
-            ((TextView) vv.findViewById(R.id.id_stand_r_area)).setText(data.getRealArea() + "");
+            ((TextView) vv.findViewById(R.id.id_stand_d_area)).setText("设计面积 m2:" + data.getDesignArea());
+            ((TextView) vv.findViewById(R.id.id_stand_r_area)).setText("实际面积 m2:" + data.getRealArea());
             ll.addView(vv);
         }
     }
@@ -89,18 +92,17 @@ public class MyStationRecyclerViewAdapter extends RecyclerView.Adapter<MyStation
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView mIdView;
-        TextView mContentView;
+        TextView stationName;
+        TextView persion;
+        TextView phone;
         ImageView imageView;
-        LinearLayout linearLayout;
 
         public ViewHolder(View view) {
             super(view);
-            mIdView = (TextView) view.findViewById(R.id.id);
-            mContentView = (TextView) view.findViewById(R.id.content);
+            stationName = (TextView) view.findViewById(R.id.id_station_name);
+            persion = (TextView) view.findViewById(R.id.id_persion);
+            phone = (TextView) view.findViewById(R.id.id_phone);
             imageView = (ImageView) view.findViewById(R.id.id_station_arraw);
-            linearLayout = (LinearLayout) view.findViewById(R.id.id_station_linearLayout);
-            linearLayout.setVisibility(View.GONE);
         }
     }
 }
