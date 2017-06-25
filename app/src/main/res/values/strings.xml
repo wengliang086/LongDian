@@ -83,4 +83,6 @@
 
     <string name="tv_name">姓名：%1$s</string>
     <string name="tv_depName">部门：%1$s</string>
+    <string name="tv_telephone">电话：%1$s</string>
+    <string name="tv_email">邮箱：%1$s</string>
 </resources>

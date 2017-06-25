@@ -18,6 +18,8 @@ public class BaseMsgPrivateMsgFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_base_msg_private_msg, container, false);
         ((TextView) view.findViewById(R.id.id_name)).setText(getString(R.string.tv_name, GlobalInfo.oprInfo.getOprName()));
         ((TextView) view.findViewById(R.id.id_department)).setText(getString(R.string.tv_depName, GlobalInfo.oprInfo.getDepName()));
+        ((TextView) view.findViewById(R.id.id_email)).setText(getString(R.string.tv_email, GlobalInfo.oprInfo.getEmail()));
+        ((TextView) view.findViewById(R.id.id_phone)).setText(getString(R.string.tv_telephone, GlobalInfo.oprInfo.getPhone()));
         return view;
     }
 }

@@ -58,7 +58,8 @@ public abstract class BaseDatePickerFragment extends Fragment implements View.On
         DatePickerDialog dialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                textView.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
+                String monthStr = (month + 1) < 10 ? "0" + (month + 1) : month + 1 + "";
+                textView.setText(year + "-" + monthStr + "-" + dayOfMonth);
             }
         }, year, month, dayOfMonth);
         dialog.show();
