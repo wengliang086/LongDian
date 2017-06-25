@@ -22,7 +22,7 @@ public class RealtimeDataFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.fragment_station_list, container, false);
+        final View view = inflater.inflate(R.layout.fragment_realtime_list, container, false);
 
         HoolaiHttpMethods.getInstance().realtimeData(getActivity(), new ObserverOnNextAndErrorListener<List<CollectExtendData>>() {
             @Override

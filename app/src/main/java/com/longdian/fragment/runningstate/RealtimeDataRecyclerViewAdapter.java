@@ -14,16 +14,30 @@ import com.longdian.util.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class RealtimeDataRecyclerViewAdapter extends RecyclerView.Adapter<RealtimeDataRecyclerViewAdapter.ViewHolder> {
 
-    private List<CollectExtendData> dataList;
+    private List<List<CollectExtendData>> mDataList = new ArrayList<>();
     private List<Boolean> openList = new ArrayList<>();// 存储打开状态
 
     public RealtimeDataRecyclerViewAdapter(List<CollectExtendData> dataList) {
-        this.dataList = dataList;
+        Map<String, Integer> map = new TreeMap<>();// 记录每个换热站的位置
+        int index = 0;
         for (int i = 0; i < dataList.size(); i++) {
-            openList.add(false);
+            String stationName = dataList.get(i).getStationName();
+            Integer mi = map.get(stationName);
+            List<CollectExtendData> subList;
+            if (mi == null) {
+                map.put(stationName, index++);
+                openList.add(false);
+                subList = new ArrayList<>();
+                mDataList.add(subList);
+            } else {
+                subList = mDataList.get(mi);
+            }
+            subList.add(dataList.get(i));
         }
     }
 
@@ -36,13 +50,13 @@ public class RealtimeDataRecyclerViewAdapter extends RecyclerView.Adapter<Realti
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         LogUtil.e("position=" + position + holder.toString());
-        final CollectExtendData s = dataList.get(position);
-        holder.mIdView.setText(s.getStationName());
-        holder.mContentView.setText(s.getLt1() + "");
-        holder.mContentView2.setText(s.getQqi() + "");
+        final CollectExtendData s = mDataList.get(position).get(0);
+        holder.stationName.setText(s.getStationName());
+        holder.mContentView.setText("水箱液位\n" + s.getLt1() + "(mm)");
+        holder.mContentView2.setText("累计热量\n" + s.getQqi() + "(GJ)");
 
         if (openList.get(position)) {
-            onShow(holder, s);
+            onShow(holder, mDataList.get(position));
         } else {
             onHide(holder);
         }
@@ -50,9 +64,9 @@ public class RealtimeDataRecyclerViewAdapter extends RecyclerView.Adapter<Realti
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (holder.linearLayout.getVisibility() == View.GONE) {
+                if (((LinearLayout) holder.itemView).getChildCount() == 1) {
                     openList.set(position, true);
-                    onShow(holder, s);
+                    onShow(holder, mDataList.get(position));
                 } else {
                     openList.set(position, false);
                     onHide(holder);
@@ -62,65 +76,62 @@ public class RealtimeDataRecyclerViewAdapter extends RecyclerView.Adapter<Realti
     }
 
     private void onHide(ViewHolder holder) {
-        holder.imageView.setImageResource(R.drawable.ic_wind_3);
-        holder.linearLayout.setVisibility(View.GONE);
+        holder.imageView.setImageResource(R.drawable.ic_more_pressed);
+        if (((LinearLayout) holder.itemView).getChildCount() > 1) {
+            ((LinearLayout) holder.itemView).removeViewAt(1);
+        }
     }
 
-    private void onShow(ViewHolder holder, CollectExtendData s) {
-        LinearLayout ll = holder.linearLayout;
-        holder.imageView.setImageResource(R.drawable.ic_wind_5);
-        ll.setVisibility(View.VISIBLE);
+    private void onShow(ViewHolder holder, List<CollectExtendData> dataList) {
+        LinearLayout ll = (LinearLayout) holder.itemView;
+        holder.imageView.setImageResource(R.drawable.ic_triangle_down);
 
         if (ll.getChildCount() <= 1) {// 防止重复添加
             LogUtil.e("添加");
-            // 一网数据
             View vv1 = LayoutInflater.from(holder.itemView.getContext()).inflate(R.layout.fragment_realtime_2, ll, false);
-            ((TextView) vv1.findViewById(R.id.id_stand_name)).setText(s.getPt1() + " " + s.getPt2());
-            ((TextView) vv1.findViewById(R.id.id_stand_d_area)).setText(s.getTe1() + " " + s.getTe2());
-            ((TextView) vv1.findViewById(R.id.id_stand_r_area)).setText(s.getCvi1() + "");
+            setData(dataList, vv1);
             ll.addView(vv1);
-            // 二网数据
-            View vv2 = LayoutInflater.from(holder.itemView.getContext()).inflate(R.layout.fragment_realtime_2, ll, false);
-            ((TextView) vv2.findViewById(R.id.id_stand_name)).setText(s.getPt3() + " " + s.getPt4());
-            ((TextView) vv2.findViewById(R.id.id_stand_d_area)).setText(s.getTe3() + " " + s.getTe4());
-            ((TextView) vv2.findViewById(R.id.id_stand_r_area)).setText(s.getFt3q() + "");
-            ll.addView(vv2);
         } else {
             LogUtil.e("更新");
-            // 一网数据
             View vv1 = ll.getChildAt(1);
-            ((TextView) vv1.findViewById(R.id.id_stand_name)).setText(s.getPt1() + " " + s.getPt2());
-            ((TextView) vv1.findViewById(R.id.id_stand_d_area)).setText(s.getTe1() + " " + s.getTe2());
-            ((TextView) vv1.findViewById(R.id.id_stand_r_area)).setText(s.getCvi1() + "");
-            // 二网数据
-            View vv2 = ll.getChildAt(2);
-            ((TextView) vv2.findViewById(R.id.id_stand_name)).setText(s.getPt3() + " " + s.getPt4());
-            ((TextView) vv2.findViewById(R.id.id_stand_d_area)).setText(s.getTe3() + " " + s.getTe4());
-            ((TextView) vv2.findViewById(R.id.id_stand_r_area)).setText(s.getFt3q() + "");
+            setData(dataList, vv1);
+        }
+    }
+
+    private void setData(List<CollectExtendData> dataList, View vv1) {
+        CollectExtendData s = dataList.get(0);
+        ((TextView) vv1.findViewById(R.id.id_pt12)).setText("供压/回压\n" + s.getPt1() + "/" + s.getPt2() + "(Mpa)");
+        ((TextView) vv1.findViewById(R.id.id_te12)).setText("供温/回温\n" + s.getTe1() + "/" + s.getTe2() + "(℃)");
+        ((TextView) vv1.findViewById(R.id.id_ft1)).setText("瞬时流量\n" + s.getFt1() + "(t/h)");
+        ((TextView) vv1.findViewById(R.id.id_ft1q)).setText("累计流量\n" + s.getFt1q() + "(GJ/h)");
+        ((TextView) vv1.findViewById(R.id.id_qi)).setText("瞬时热量\n" + s.getQi() + "(GJ/h)");
+        ((TextView) vv1.findViewById(R.id.id_cvi1)).setText(" " + s.getCvi1() + "");
+        LinearLayout ll = (LinearLayout) vv1.findViewById(R.id.id_realtime_ll);
+        for (CollectExtendData d : dataList) {
+            View dv = LayoutInflater.from(vv1.getContext()).inflate(R.layout.fragment_realtime_3, ll, false);
+            ((TextView) dv.findViewById(R.id.id_stand_name)).setText(d.getStandName());
+            ll.addView(dv);
         }
     }
 
     @Override
     public int getItemCount() {
-        return dataList.size();
+        return mDataList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView mIdView;
+        TextView stationName;
         TextView mContentView;
         TextView mContentView2;
         ImageView imageView;
-        LinearLayout linearLayout;
 
         public ViewHolder(View view) {
             super(view);
-            mIdView = (TextView) view.findViewById(R.id.id);
+            stationName = (TextView) view.findViewById(R.id.id_station_name);
             mContentView = (TextView) view.findViewById(R.id.content);
             mContentView2 = (TextView) view.findViewById(R.id.content2);
             imageView = (ImageView) view.findViewById(R.id.id_station_arraw);
-            linearLayout = (LinearLayout) view.findViewById(R.id.id_station_linearLayout);
-            linearLayout.setVisibility(View.GONE);
         }
     }
 }

@@ -34,8 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
-            android:background="@color/black"
-            android:src="@drawable/ic_wind_3" />
+            android:src="@drawable/ic_more_pressed" />
     </LinearLayout>
 
     <LinearLayout

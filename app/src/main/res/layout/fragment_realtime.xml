@@ -2,62 +2,52 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="0.5dp"
+    android:layout_marginTop="10dp"
     android:background="@color/white"
-    android:orientation="vertical">
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="10dp">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/id"
-            android:layout_width="wrap_content"
+            android:id="@+id/id_station_name"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/text_margin"
+            android:layout_weight="3"
             android:text="建设小区"
-            android:textAppearance="?attr/textAppearanceListItem" />
+            android:textColor="@color/black_trans90"
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/content"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_margin"
-            android:layout_weight="1"
-            android:text="水箱液位(mm)"
-            android:textAppearance="?attr/textAppearanceListItem" />
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="水箱液位\n0(mm)"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/content2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_margin"
-            android:layout_weight="1"
-            android:text="累计热量(GJ)"
-            android:textAppearance="?attr/textAppearanceListItem" />
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="累计热量\n110(GJ)"
+            android:textSize="14sp" />
 
         <ImageView
             android:id="@+id/id_station_arraw"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:background="@color/black"
-            android:src="@drawable/ic_wind_3" />
+            android:src="@drawable/ic_more_pressed" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/id_station_linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/memory" />
-
-        <!--<include layout="@layout/fragment_station_2" />-->
-    </LinearLayout>
+    <!--<include layout="@layout/fragment_realtime_2" />-->
 </LinearLayout>

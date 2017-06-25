@@ -62,13 +62,13 @@ public class MyStationRecyclerViewAdapter extends RecyclerView.Adapter<MyStation
     }
 
     private void onHide(ViewHolder holder) {
-        holder.imageView.setImageResource(R.drawable.ic_wind_3);
+        holder.imageView.setImageResource(R.drawable.ic_more_pressed);
         holder.linearLayout.setVisibility(View.GONE);
     }
 
     private void onShow(ViewHolder holder, StationData s) {
         LinearLayout ll = holder.linearLayout;
-        holder.imageView.setImageResource(R.drawable.ic_wind_5);
+        holder.imageView.setImageResource(R.drawable.ic_triangle_down);
         ll.setVisibility(View.VISIBLE);
         ll.removeAllViews();
         LogUtil.e("添加");
