@@ -22,7 +22,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="10dp"
-                android:src="@drawable/ic_more_scan_code" />
+                android:src="@drawable/t1_information_personal_72px" />
 
             <TextView
                 android:layout_width="1dp"
@@ -55,7 +55,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="10dp"
-                android:src="@drawable/ic_more_scan_code" />
+                android:src="@drawable/t1_settings_password_72px" />
 
             <TextView
                 android:layout_width="1dp"
@@ -91,7 +91,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="10dp"
-                android:src="@drawable/ic_more_scan_code" />
+                android:src="@drawable/t1_power_station_72px" />
 
             <TextView
                 android:layout_width="1dp"
@@ -124,7 +124,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="10dp"
-                android:src="@drawable/ic_more_scan_code" />
+                android:src="@drawable/t1_system_info_72px" />
 
             <TextView
                 android:layout_width="1dp"

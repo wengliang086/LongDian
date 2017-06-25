@@ -22,7 +22,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="10dp"
-                android:src="@drawable/ic_more_generate_code" />
+                android:src="@drawable/t1_water_72px" />
 
             <TextView
                 android:layout_width="1dp"
@@ -52,10 +52,10 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="10dp"
-                android:src="@drawable/ic_more_give_good_reputation" />
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="7dp"
+                android:src="@drawable/t1_heat_72px" />
 
             <TextView
                 android:layout_width="1dp"
@@ -88,7 +88,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="10dp"
-                android:src="@drawable/ic_more_scan_code" />
+                android:src="@drawable/t1_bolt_72px" />
 
             <TextView
                 android:layout_width="1dp"
@@ -119,7 +119,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_more_faq" />
+            android:src="@drawable/t1_money_increase_72px" />
 
         <TextView
             android:layout_width="1dp"

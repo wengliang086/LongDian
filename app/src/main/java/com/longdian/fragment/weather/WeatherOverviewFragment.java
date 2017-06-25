@@ -524,6 +524,7 @@ public class WeatherOverviewFragment extends Fragment implements View.OnClickLis
                 break;
             // 城市管理按钮
             case R.id.action_home:
+                getActivity().finish();
                 break;
         }
     }

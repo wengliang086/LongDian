@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:src="@drawable/ic_wallpaper_mark" />
+            android:src="@drawable/ic_search_black" />
     </LinearLayout>
 
     <com.kelin.scrollablepanel.library.ScrollablePanel

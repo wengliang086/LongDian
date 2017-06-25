@@ -24,12 +24,12 @@ import java.util.List;
 public class EnergyAnalysisRecyclerViewAdapter extends RecyclerView.Adapter<EnergyAnalysisRecyclerViewAdapter.ViewHolder> {
 
     private List<Entity> mValues = Arrays.asList(
-            new Entity("信息总览", PieChartFragment.class, R.drawable.ic_more_suggestion_feedback),
+            new Entity("信息总览", PieChartFragment.class, R.drawable.t1_pie_chart_72px),
             new Entity("实时数据", RealtimeDataFragment.class, R.drawable.ic_more_give_good_reputation),
-            new Entity("历史数据", HistoryDataFragment.class, R.drawable.ic_more_rewards),
-            new Entity("日报表", ReportDayFragment.class, R.drawable.ic_more_software_update),
-            new Entity("月报表", ReportMonthFragment.class, R.drawable.ic_more_friend_share),
-            new Entity("年报表", ReportYearFragment.class, R.drawable.ic_more_faq)
+            new Entity("历史数据", HistoryDataFragment.class, R.drawable.t1_history_72px),
+            new Entity("日报表", ReportDayFragment.class, R.drawable.t1_list_bullets_72px),
+            new Entity("月报表", ReportMonthFragment.class, R.drawable.t1_list_bullets_72px2),
+            new Entity("年报表", ReportYearFragment.class, R.drawable.t1_list_bullets_72px3)
     );
     private int mColumnCount = 1;
     private Context context;

@@ -75,15 +75,18 @@ public class MainActivity extends TopBarBaseActivity implements RadioGroup.OnChe
         switch (checkedId) {
             case R.id.id_running_state:
                 setTitle(getString(R.string.main_navigation_running_state));
-                setTopRightButton("buttion", R.drawable.ic_mine_white_24dp, new OnClickListener() {
+                isGrid = false;
+                final int gridRes = R.drawable.ic_more_select;
+                final int listRes = R.drawable.btn_timer_quick;
+                setTopRightButton("buttion", gridRes, new OnClickListener() {
                     @Override
                     public void onClick() {
                         replaceFragment(RunningStateFragment.newInstance(isGrid ? 1 : 3));
-                        updateMenuItemIcon(isGrid ? R.drawable.ic_mine_white_24dp : R.drawable.ic_return_white_24dp);
                         isGrid = !isGrid;
+                        updateMenuItemIcon(isGrid ? listRes : gridRes);
                     }
                 });
-                updateMenuItemIcon(isGrid ? R.drawable.ic_mine_white_24dp : R.drawable.ic_return_white_24dp);
+                updateMenuItemIcon(isGrid ? listRes : gridRes);
                 replaceFragment(RunningStateFragment.newInstance(1));
                 break;
             case R.id.id_data_analysis:

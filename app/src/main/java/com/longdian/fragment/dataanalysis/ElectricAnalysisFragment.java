@@ -25,6 +25,8 @@ public class ElectricAnalysisFragment extends BaseDatePickerFragment {
 
     private FragmentManager fragmentManager;
     private boolean isChart = false;
+    private int chartRes = R.drawable.t1_chart;
+    private int tableRes = R.drawable.t1_table_48px;
     public static List<Map<String, String>> list = new ArrayList<>();
 
     @Nullable
@@ -35,7 +37,7 @@ public class ElectricAnalysisFragment extends BaseDatePickerFragment {
         initDatePicker(baseView);
 
         final TopBarBaseActivity activity = (TopBarBaseActivity) getActivity();
-        activity.setTopRightButton("bbb", R.drawable.ic_action_accept, new TopBarBaseActivity.OnClickListener() {
+        activity.setTopRightButton("bbb", chartRes, new TopBarBaseActivity.OnClickListener() {
             @Override
             public void onClick() {
                 if (isChart) {
@@ -44,6 +46,7 @@ public class ElectricAnalysisFragment extends BaseDatePickerFragment {
                     replaceFragment(new ElectricAnalysisFragment2());
                 }
                 isChart = !isChart;
+                ((TopBarBaseActivity) getActivity()).updateMenuItemIcon(isChart ? tableRes : chartRes);
             }
         });
         fragmentManager = activity.getSupportFragmentManager();
