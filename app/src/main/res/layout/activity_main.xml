@@ -29,51 +29,31 @@
 
         <RadioButton
             android:id="@+id/id_running_state"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:button="@null"
+            style="@style/MainTabStyle"
+            android:layout_marginTop="7dp"
             android:drawableTop="@drawable/selector_main_button_find"
-            android:gravity="center"
-            android:paddingTop="6dp"
-            android:text="@string/main_navigation_running_state"
-            android:textColor="#ccc" />
+            android:text="@string/main_navigation_running_state" />
 
         <RadioButton
             android:id="@+id/id_data_analysis"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:button="@null"
+            style="@style/MainTabStyle"
+            android:layout_marginTop="7dp"
             android:drawableTop="@drawable/selector_main_button_subscribe"
-            android:gravity="center"
-            android:paddingTop="6dp"
-            android:text="@string/main_navigation_data_analysis"
-            android:textColor="#ccc" />
+            android:text="@string/main_navigation_data_analysis" />
 
         <RadioButton
             android:id="@+id/id_weather"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:button="@null"
+            style="@style/MainTabStyle"
+            android:layout_marginTop="7dp"
             android:drawableTop="@drawable/selector_main_button_download"
-            android:gravity="center"
-            android:paddingTop="6dp"
-            android:text="@string/main_navigation_weather"
-            android:textColor="#ccc" />
+            android:text="@string/main_navigation_weather" />
 
         <RadioButton
             android:id="@+id/id_base_msg"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:button="@null"
+            style="@style/MainTabStyle"
+            android:layout_marginTop="7dp"
             android:drawableTop="@drawable/selector_main_button_mine"
-            android:gravity="center"
-            android:paddingTop="6dp"
-            android:text="@string/main_navigation_base_msg"
-            android:textColor="#ccc" />
+            android:text="@string/main_navigation_base_msg" />
     </RadioGroup>
 
 </LinearLayout>

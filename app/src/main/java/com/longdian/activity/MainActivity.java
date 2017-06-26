@@ -39,11 +39,6 @@ public class MainActivity extends TopBarBaseActivity implements RadioGroup.OnChe
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.id_main_rg);
         radioGroup.setOnCheckedChangeListener(this);
 
-        setRadioButtonTopDrawableSize(R.id.id_running_state, R.drawable.selector_main_button_find);
-        setRadioButtonTopDrawableSize(R.id.id_data_analysis, R.drawable.selector_main_button_subscribe);
-        setRadioButtonTopDrawableSize(R.id.id_weather, R.drawable.selector_main_button_download);
-        setRadioButtonTopDrawableSize(R.id.id_base_msg, R.drawable.selector_main_button_mine);
-
         ((RadioButton) radioGroup.getChildAt(0)).setChecked(true);
     }
 
@@ -71,7 +66,6 @@ public class MainActivity extends TopBarBaseActivity implements RadioGroup.OnChe
 
     @Override
     public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-        updateTextColor(checkedId);
         switch (checkedId) {
             case R.id.id_running_state:
                 setTitle(getString(R.string.main_navigation_running_state));
@@ -105,18 +99,6 @@ public class MainActivity extends TopBarBaseActivity implements RadioGroup.OnChe
                 replaceFragment(new BaseMsgFragment());
                 break;
         }
-    }
-
-    private void updateTextColor(int resId) {
-        RadioButton radioButton = (RadioButton) findViewById(R.id.id_running_state);
-        RadioButton radioButton1 = (RadioButton) findViewById(R.id.id_data_analysis);
-        RadioButton radioButton2 = (RadioButton) findViewById(R.id.id_weather);
-        RadioButton radioButton3 = (RadioButton) findViewById(R.id.id_base_msg);
-        radioButton.setTextColor(getResources().getColor(R.color.gray_seekbar));
-        radioButton1.setTextColor(getResources().getColor(R.color.gray_seekbar));
-        radioButton2.setTextColor(getResources().getColor(R.color.gray_seekbar));
-        radioButton3.setTextColor(getResources().getColor(R.color.gray_seekbar));
-        ((RadioButton) findViewById(resId)).setTextColor(getResources().getColor(R.color.memory));
     }
 
     private long mExitTime = 0;
