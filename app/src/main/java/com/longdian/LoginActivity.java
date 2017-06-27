@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (2 > 1) {
+        if (2 > 3) {
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
             finish();
             return;
