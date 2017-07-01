@@ -1,24 +1,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_welcome"
-    android:gravity="center_horizontal"
+    android:background="@drawable/login_bg"
     android:orientation="vertical">
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="60dp"
-        android:src="@drawable/ic_more_about_us" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:padding="@dimen/activity_horizontal_margin">
+        android:paddingBottom="@dimen/activity_horizontal_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="80dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="能耗分析系统"
+            android:textColor="@color/white"
+            android:textSize="40dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -69,8 +70,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="@android:color/holo_green_dark"
+            android:background="@color/blue_tog_btn"
             android:text="登录"
+            android:textColor="@color/white"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -139,9 +142,27 @@
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
-        android:text="Copyright(C)2015黑龙江龙电电器有限公司" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="-30dp"
+        android:padding="@dimen/activity_horizontal_margin">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="-50dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/shanghu_center"
+            android:visibility="visible" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:text="Copyright(C)2015黑龙江龙电电器有限公司" />
+    </RelativeLayout>
 </LinearLayout>
