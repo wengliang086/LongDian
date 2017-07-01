@@ -37,6 +37,7 @@ public class ContentActivity extends TopBarBaseActivity {
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        LoginActivity.setStatusBarTranslucent(this, R.color.colorPrimary);
         fragmentManager = getSupportFragmentManager();
         Class clazz = (Class) getIntent().getSerializableExtra(FragmentClassName);
         String title = getIntent().getStringExtra(Title);

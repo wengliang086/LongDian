@@ -25,12 +25,12 @@
                 android:src="@drawable/t1_water_72px" />
 
             <TextView
+                style="@style/main_text_view"
                 android:layout_width="1dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:text="水耗分析"
-                android:textColor="@android:color/black" />
+                android:text="水耗分析" />
 
             <ImageView
                 android:layout_width="20dp"
@@ -54,16 +54,16 @@
             <ImageView
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:layout_marginLeft="7dp"
+                android:layout_marginLeft="5dp"
                 android:src="@drawable/t1_heat_72px" />
 
             <TextView
+                style="@style/main_text_view"
                 android:layout_width="1dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:text="热耗分析"
-                android:textColor="@android:color/black" />
+                android:text="热耗分析" />
 
             <ImageView
                 android:layout_width="20dp"
@@ -91,12 +91,12 @@
                 android:src="@drawable/t1_bolt_72px" />
 
             <TextView
+                style="@style/main_text_view"
                 android:layout_width="1dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:text="电耗分析"
-                android:textColor="@android:color/black" />
+                android:text="电耗分析" />
 
             <ImageView
                 android:layout_width="20dp"
@@ -122,12 +122,12 @@
             android:src="@drawable/t1_money_increase_72px" />
 
         <TextView
+            style="@style/main_text_view"
             android:layout_width="1dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:text="经济分析报表"
-            android:textColor="@android:color/black" />
+            android:text="经济分析报表" />
 
         <ImageView
             android:layout_width="20dp"

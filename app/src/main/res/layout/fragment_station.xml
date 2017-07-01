@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    android:background="@color/white"
+    android:layout_marginTop="8dp"
+    android:background="@drawable/jh_shape_corner_rectangle_gray2"
     android:orientation="vertical">
 
     <LinearLayout
@@ -19,7 +19,7 @@
             android:layout_margin="@dimen/text_margin"
             android:layout_weight="5"
             android:text="建设小区"
-            android:textAppearance="?attr/textAppearanceListItem"
+            android:textColor="@color/black_trans70"
             android:textSize="18sp" />
 
         <TextView

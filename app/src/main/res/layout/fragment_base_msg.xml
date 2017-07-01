@@ -22,15 +22,15 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="10dp"
-                android:src="@drawable/t1_information_personal_72px" />
+                android:src="@drawable/ic_perm_identity_black_48dp" />
 
             <TextView
+                style="@style/main_text_view"
                 android:layout_width="1dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:text="个人信息"
-                android:textColor="@android:color/black" />
+                android:text="个人信息" />
 
             <ImageView
                 android:layout_width="20dp"
@@ -55,15 +55,15 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="10dp"
-                android:src="@drawable/t1_settings_password_72px" />
+                android:src="@drawable/ic_lock_outline_black_48dp" />
 
             <TextView
+                style="@style/main_text_view"
                 android:layout_width="1dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:text="修改密码"
-                android:textColor="@android:color/black" />
+                android:text="修改密码" />
 
             <ImageView
                 android:layout_width="20dp"
@@ -91,15 +91,15 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="10dp"
-                android:src="@drawable/t1_power_station_72px" />
+                android:src="@drawable/ic_account_balance_black_48dp" />
 
             <TextView
+                style="@style/main_text_view"
                 android:layout_width="1dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:text="换热站信息"
-                android:textColor="@android:color/black" />
+                android:text="换热站信息" />
 
             <ImageView
                 android:layout_width="20dp"
@@ -124,15 +124,15 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="10dp"
-                android:src="@drawable/t1_system_info_72px" />
+                android:src="@drawable/ic_info_outline_black_48dp" />
 
             <TextView
+                style="@style/main_text_view"
                 android:layout_width="1dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:text="关于系统"
-                android:textColor="@android:color/black" />
+                android:text="关于系统" />
 
             <ImageView
                 android:layout_width="20dp"
@@ -148,5 +148,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@drawable/jh_shape_corner_rectangle_red"
-        android:text="退出登录" />
+        android:text="退出登录"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
 </LinearLayout>

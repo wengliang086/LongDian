@@ -79,8 +79,8 @@ public class MyStationRecyclerViewAdapter extends RecyclerView.Adapter<MyStation
         for (StandData data : list) {
             View vv = LayoutInflater.from(holder.itemView.getContext()).inflate(R.layout.fragment_station_2, ll, false);
             ((TextView) vv.findViewById(R.id.id_stand_name)).setText(data.getStandName());
-            ((TextView) vv.findViewById(R.id.id_stand_d_area)).setText("设计面积 m2:" + data.getDesignArea());
-            ((TextView) vv.findViewById(R.id.id_stand_r_area)).setText("实际面积 m2:" + data.getRealArea());
+            ((TextView) vv.findViewById(R.id.id_stand_d_area)).setText("设计面积\n" + data.getDesignArea() + "㎡");
+            ((TextView) vv.findViewById(R.id.id_stand_r_area)).setText("实际面积\n" + data.getRealArea() + "㎡");
             ll.addView(vv);
         }
     }

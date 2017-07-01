@@ -24,12 +24,12 @@ import java.util.List;
 public class EnergyAnalysisRecyclerViewAdapter extends RecyclerView.Adapter<EnergyAnalysisRecyclerViewAdapter.ViewHolder> {
 
     private List<Entity> mValues = Arrays.asList(
-            new Entity("信息总览", PieChartFragment.class, R.drawable.t1_pie_chart_72px),
-            new Entity("实时数据", RealtimeDataFragment.class, R.drawable.ic_more_give_good_reputation),
-            new Entity("历史数据", HistoryDataFragment.class, R.drawable.t1_history_72px),
-            new Entity("日报表", ReportDayFragment.class, R.drawable.t1_list_bullets_72px),
-            new Entity("月报表", ReportMonthFragment.class, R.drawable.t1_list_bullets_72px2),
-            new Entity("年报表", ReportYearFragment.class, R.drawable.t1_list_bullets_72px3)
+            new Entity("信息总览", PieChartFragment.class, R.drawable.t1_pie_chart_72px, "水电热信息概况"),
+            new Entity("实时数据", RealtimeDataFragment.class, R.drawable.ic_more_give_good_reputation, "换热站一网、二网实时数据"),
+            new Entity("历史数据", HistoryDataFragment.class, R.drawable.t1_history_72px, "按日查看换热站一网、二网数据"),
+            new Entity("日报表", ReportDayFragment.class, R.drawable.ic_more_suggestion_feedback, "日数据统计"),
+            new Entity("月报表", ReportMonthFragment.class, R.drawable.ic_more_suggestion_feedback, "月数据统计"),
+            new Entity("年报表", ReportYearFragment.class, R.drawable.ic_more_suggestion_feedback, "年数据统计")
     );
     private int mColumnCount = 1;
     private Context context;
@@ -50,6 +50,9 @@ public class EnergyAnalysisRecyclerViewAdapter extends RecyclerView.Adapter<Ener
         final Entity entity = mValues.get(position);
         holder.mIdView.setText(entity.title);
         holder.imageView.setImageResource(entity.resId);
+        if (holder.tvDesc != null) {
+            holder.tvDesc.setText(entity.desc);
+        }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,11 +70,13 @@ public class EnergyAnalysisRecyclerViewAdapter extends RecyclerView.Adapter<Ener
     class ViewHolder extends RecyclerView.ViewHolder {
         TextView mIdView;
         ImageView imageView;
+        TextView tvDesc;
 
         public ViewHolder(View view) {
             super(view);
             mIdView = (TextView) view.findViewById(R.id.id);
             imageView = (ImageView) view.findViewById(R.id.id_item_icon);
+            tvDesc = (TextView) view.findViewById(R.id.id_description);
         }
     }
 
@@ -79,11 +84,13 @@ public class EnergyAnalysisRecyclerViewAdapter extends RecyclerView.Adapter<Ener
         String title;
         Class clazz;
         int resId;
+        String desc;
 
-        public Entity(String title, Class clazz, int resId) {
+        public Entity(String title, Class clazz, int resId, String desc) {
             this.title = title;
             this.clazz = clazz;
             this.resId = resId;
+            this.desc = desc;
         }
     }
 }
