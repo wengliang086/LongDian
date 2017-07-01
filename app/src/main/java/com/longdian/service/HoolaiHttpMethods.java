@@ -34,8 +34,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HoolaiHttpMethods {
 
-    private String BASE_URL = "http://192.168.1.102:8080/";
-//    private String BASE_URL = "http://110.172.212.110:8088/";
+//    private String BASE_URL = "http://192.168.1.102:8080/";
+    private String BASE_URL = "http://110.172.212.110:8088/energy/";
     private static final int DEFAULT_TIMEOUT = 5;
 
     private static final HoolaiHttpMethods mInstance = new HoolaiHttpMethods();//单例
