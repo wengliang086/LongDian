@@ -73,14 +73,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:gravity="center"
-                android:text="调节阀开度: " />
+                android:text="调节阀开度: "
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/id_cvi1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="建设站-1# 20\n建设站-2# 20" />
+                android:gravity="center"
+                android:text="调节阀开度\n建设站-1# 20，建设站-2# 20" />
 
         </LinearLayout>
     </HorizontalScrollView>

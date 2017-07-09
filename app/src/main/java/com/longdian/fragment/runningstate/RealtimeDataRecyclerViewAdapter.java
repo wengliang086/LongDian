@@ -105,13 +105,20 @@ public class RealtimeDataRecyclerViewAdapter extends RecyclerView.Adapter<Realti
         ((TextView) vv1.findViewById(R.id.id_ft1)).setText("瞬时流量\n" + s.getFt1() + "(t/h)");
         ((TextView) vv1.findViewById(R.id.id_ft1q)).setText("累计流量\n" + s.getFt1q() + "(GJ/h)");
         ((TextView) vv1.findViewById(R.id.id_qi)).setText("瞬时热量\n" + s.getQi() + "(GJ/h)");
-        ((TextView) vv1.findViewById(R.id.id_cvi1)).setText(" " + s.getCvi1() + "");
+        String str = "调节阀开度\n";
         LinearLayout ll = (LinearLayout) vv1.findViewById(R.id.id_realtime_ll);
         for (CollectExtendData d : dataList) {
+            str += d.getStandName() + "：" + d.getCvi1() + "，";
             View dv = LayoutInflater.from(vv1.getContext()).inflate(R.layout.fragment_realtime_3, ll, false);
             ((TextView) dv.findViewById(R.id.id_stand_name)).setText(d.getStandName());
+            ((TextView) dv.findViewById(R.id.id_r2_1)).setText(d.getPt3() + "/" + d.getPt4() + "/" + d.getPt3_pt4());
+            ((TextView) dv.findViewById(R.id.id_r2_2)).setText(d.getTe3() + "/" + d.getTe4());
+            ((TextView) dv.findViewById(R.id.id_r2_3)).setText(d.getFt2() + "");
+            ((TextView) dv.findViewById(R.id.id_r2_4)).setText(d.getFt3() + "");
+            ((TextView) dv.findViewById(R.id.id_r2_6)).setText(d.getFc1v1() + "");
             ll.addView(dv);
         }
+        ((TextView) vv1.findViewById(R.id.id_cvi1)).setText(str.substring(0, str.length() - 1));
     }
 
     @Override
