@@ -74,7 +74,7 @@ public class PieChartFragment extends Fragment {
 //        tf = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
 
 //        mChart.setCenterTextTypeface(Typeface.createFromAsset(getAssets(), "OpenSans-Light.ttf"));
-        mChart.setCenterText(generateCenterSpannableText());
+//        mChart.setCenterText(generateCenterSpannableText());
 
         mChart.setExtraOffsets(20.f, 0.f, 20.f, 0.f);
 
@@ -84,8 +84,8 @@ public class PieChartFragment extends Fragment {
         mChart.setTransparentCircleColor(Color.WHITE);
         mChart.setTransparentCircleAlpha(110);
 
-        mChart.setHoleRadius(58f);
-        mChart.setTransparentCircleRadius(61f);
+        mChart.setHoleRadius(48f);
+        mChart.setTransparentCircleRadius(51f);
 
         mChart.setDrawCenterText(true);
 

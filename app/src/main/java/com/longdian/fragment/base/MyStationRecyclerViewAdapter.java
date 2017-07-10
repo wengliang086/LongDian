@@ -39,8 +39,8 @@ public class MyStationRecyclerViewAdapter extends RecyclerView.Adapter<MyStation
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         final StationData s = stationList.getStationDataList().get(position);
         holder.stationName.setText(s.getStationName());
-        holder.persion.setText("负责人\n" + s.getPersonnel());
-        holder.phone.setText("负责人电话\n" + s.getTelephone());
+        holder.persion.setText("负责人\n" + (s.getPersonnel() == null ? "" : s.getPersonnel()));
+        holder.phone.setText("负责人电话\n" + (s.getTelephone() == null ? "" : s.getTelephone()));
 
         if (openList.get(position)) {
             onShow(holder, s);

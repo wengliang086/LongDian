@@ -28,7 +28,7 @@ public class ElectricAnalysisFragment1 extends Fragment {
 
         List<Map<String, String>> lists = ElectricAnalysisFragment.list;
 
-        List<Integer> vs = Arrays.asList(80, 80, 80, 80, 80, 80, 80, 80);
+        List<Integer> vs = Arrays.asList(80, 80, 80, 80, 100, 100, 80, 80);
         TestPanelAdapter testPanelAdapter = new TestPanelAdapter(createData(lists), TestPanelAdapter.width_type_dp, vs);
         scrollablePanel.setPanelAdapter(testPanelAdapter);
         return baseView;

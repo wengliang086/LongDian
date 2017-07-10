@@ -153,8 +153,8 @@ public class DateUtils {
     public static String getYmdDate2() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String retStr = sdf.format(new Date());
-//        return retStr;
-        return "2017-06-17";
+        return retStr;
+//        return "2017-06-17";
     }
 
     /**

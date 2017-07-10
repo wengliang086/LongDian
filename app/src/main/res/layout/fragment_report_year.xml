@@ -35,7 +35,8 @@
             android:hint="名称"
             android:textColor="@android:color/holo_blue_light"
             android:textColorHint="@android:color/holo_blue_light"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/id_search"

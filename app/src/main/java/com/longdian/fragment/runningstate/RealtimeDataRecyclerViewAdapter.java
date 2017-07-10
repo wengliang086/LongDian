@@ -100,12 +100,12 @@ public class RealtimeDataRecyclerViewAdapter extends RecyclerView.Adapter<Realti
 
     private void setData(List<CollectExtendData> dataList, View vv1) {
         CollectExtendData s = dataList.get(0);
-        ((TextView) vv1.findViewById(R.id.id_pt12)).setText("供压/回压\n" + s.getPt1() + "/" + s.getPt2() + "(Mpa)");
-        ((TextView) vv1.findViewById(R.id.id_te12)).setText("供温/回温\n" + s.getTe1() + "/" + s.getTe2() + "(℃)");
-        ((TextView) vv1.findViewById(R.id.id_ft1)).setText("瞬时流量\n" + s.getFt1() + "(t/h)");
-        ((TextView) vv1.findViewById(R.id.id_ft1q)).setText("累计流量\n" + s.getFt1q() + "(GJ/h)");
-        ((TextView) vv1.findViewById(R.id.id_qi)).setText("瞬时热量\n" + s.getQi() + "(GJ/h)");
-        String str = "调节阀开度\n";
+        ((TextView) vv1.findViewById(R.id.id_pt12)).setText("供压/回压(Mpa)\n" + s.getPt1() + "/" + s.getPt2() + "");
+        ((TextView) vv1.findViewById(R.id.id_te12)).setText("供温/回温(℃)\n" + s.getTe1() + "/" + s.getTe2() + "");
+        ((TextView) vv1.findViewById(R.id.id_ft1)).setText("瞬时流量(t/h)\n" + s.getFt1() + "");
+        ((TextView) vv1.findViewById(R.id.id_ft1q)).setText("累计流量(t/h)\n" + s.getFt1q() + "");
+        ((TextView) vv1.findViewById(R.id.id_qi)).setText("瞬时热量(GJ/h)\n" + s.getQi() + "");
+        String str = "调节阀开度(%)\n";
         LinearLayout ll = (LinearLayout) vv1.findViewById(R.id.id_realtime_ll);
         for (CollectExtendData d : dataList) {
             str += d.getStandName() + "：" + d.getCvi1() + "，";

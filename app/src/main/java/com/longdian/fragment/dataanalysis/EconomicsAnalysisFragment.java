@@ -41,7 +41,7 @@ public class EconomicsAnalysisFragment extends BaseDatePickerFragment {
         HoolaiHttpMethods.getInstance().reportEconomics(getActivity(), start, end, name, new ObserverOnNextAndErrorListener<List<Map<String, String>>>() {
             @Override
             public void onNext(List<Map<String, String>> dataList) {
-                List<Integer> vs = Arrays.asList(80, 80, 80, 80, 80, 80, 80, 80, 80, 80);
+                List<Integer> vs = Arrays.asList(80, 80, 80, 80, 80, 100, 80, 80, 80, 80);
                 TestPanelAdapter testPanelAdapter = new TestPanelAdapter(createData(dataList), TestPanelAdapter.width_type_dp, vs);
                 scrollablePanel.setPanelAdapter(testPanelAdapter);
             }

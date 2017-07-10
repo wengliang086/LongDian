@@ -152,7 +152,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:text="机构：富拉尔基热电厂热力公司能"
+                android:text="机构：齐齐哈尔热力分公司"
                 android:textColor="@android:color/black" />
 
         </LinearLayout>

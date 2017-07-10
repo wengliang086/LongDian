@@ -58,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:gravity="center"
-                android:text="累计流量\n10(GJ/h)" />
+                android:text="累计流量\n10(t/h)" />
 
             <TextView
                 android:id="@+id/id_qi"
