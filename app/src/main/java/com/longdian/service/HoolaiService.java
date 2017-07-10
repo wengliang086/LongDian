@@ -29,7 +29,7 @@ public interface HoolaiService {
     Observable<HoolaiResponse<List<CollectExtendData>>> historydata(@Query("eTime") String eTime);
 
     @GET("user/test1")
-    Observable<HoolaiResponse<Map<String, Long>>> pieChart();
+    Observable<HoolaiResponse<Map<String, Float>>> pieChart();
 
     @GET("user/day/list")
     Observable<HoolaiResponse<List<Map<String, String>>>> reportDay(@Query("searchDateTime") String searchDateTime);

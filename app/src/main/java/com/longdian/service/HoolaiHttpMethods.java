@@ -73,7 +73,7 @@ public class HoolaiHttpMethods {
         toObserverHoolai(context, service.changePwd(account, oldPwd, pwd), observerOnNextAndErrorListener);
     }
 
-    public void pieChart(Context context, ObserverOnNextAndErrorListener<Map<String, Long>> observerOnNextAndErrorListener) {
+    public void pieChart(Context context, ObserverOnNextAndErrorListener<Map<String, Float>> observerOnNextAndErrorListener) {
         toObserverHoolai(context, service.pieChart(), observerOnNextAndErrorListener);
     }
 

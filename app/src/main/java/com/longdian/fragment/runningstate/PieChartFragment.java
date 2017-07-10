@@ -37,21 +37,21 @@ import java.util.Map;
 public class PieChartFragment extends Fragment {
 
     private PieChart mChart;
-    private long jqi;// 电
-    private long qqi;// 热
-    private long ft3q;// 水
+    private float jqi;// 电
+    private float qqi;// 热
+    private float ft3q;// 水
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View baseView = inflater.inflate(R.layout.activity_pie_chart, container, false);
 
-        HoolaiHttpMethods.getInstance().pieChart(getActivity(), new ObserverOnNextAndErrorListener<Map<String, Long>>() {
+        HoolaiHttpMethods.getInstance().pieChart(getActivity(), new ObserverOnNextAndErrorListener<Map<String, Float>>() {
             @Override
-            public void onNext(Map<String, Long> stringObjectMap) {
-                jqi = (long) stringObjectMap.get("jqi");
-                qqi = (long) stringObjectMap.get("qqi");
-                ft3q = (long) stringObjectMap.get("ft3q");
+            public void onNext(Map<String, Float> stringObjectMap) {
+                jqi = stringObjectMap.get("jqi_a");
+                qqi = stringObjectMap.get("qqi_a");
+                ft3q = stringObjectMap.get("ft3q_a");
                 init(baseView);
             }
 
@@ -111,6 +111,7 @@ public class PieChartFragment extends Fragment {
         l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
         l.setDrawInside(false);
         l.setEnabled(true);
+        l.setFormSize(20);
     }
 
     private void setData(int count, float range) {
